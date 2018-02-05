@@ -1,0 +1,8 @@
+{
+  "name": "music-player",
+  "version": "0.1.0",
+  "description": "james",
+  "main": "main.js",
+  "author": "james",
+  "license": "ISC"
+}
