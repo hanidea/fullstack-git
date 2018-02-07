@@ -10,11 +10,11 @@
 </head>
 <body style="padding:10px;" >
    
-    <div ng-controller="MyCtrl">
-            <h1>{{realname}}</h1> 
-            <h1>{{http}}</h1> 
-            <h1>{{Data.msg}}</h1> 
-        <!-- <input type="text" ng-model="msg"> -->
+    <div ng-controller="FCtrl">
+            <!-- <h1>{{realname}}</h1> 
+            <h1>{{http}}</h1>  -->
+            <input type="text" ng-model="data.msg">
+            <h1>{{data.msg}}</h1> 
         <!-- <div ng-bind="'用户名:'+msg"></div> -->
         <!-- <h1>{{reverse()}}</h1> -->
         <!-- <div class="{{msg}}">{{msg}}</div> -->
@@ -23,10 +23,17 @@
         <div class="button" ng-click="login()">登录</div>
         <div ng-show="errormsg.length>0" class="alert-box">{{errormsg}}</div> -->
     </div>
-    <!-- <div ng-controller="NextCtrl">
-            <input type="text" ng-model="msg">
-            <h1>{{msg}}</h1>
-        </div> -->
+    <div ng-controller="SCtrl">
+            <input type="text" ng-model="data.msg">
+            <h1>{{data.msg}}</h1>
+        </div>
+    <div ng-controller="AddressCtrl">
+        <ul class="ui-list ui-list-link ui-list-next ui-list-active ui-border-tb">
+            <li ng-class="('selected':$first)" ng-repeat="item in list" class="ui-border-t">
+                <h4>{{$index+item.address+$first+$last}}</h4>
+            </li>
+        </ul>
+    </div>
     <script src="angular-1.6.9/angular.min.js"></script>
     <script src="myctrl.js"></script>
 </body>
