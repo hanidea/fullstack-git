@@ -1,0 +1,25 @@
+{
+  "name": "nodemongodb",
+  "homepage": "https://github.com/hanidea/hanidea.github.io",
+  "authors": [
+    "hanidea"
+  ],
+  "description": "movie",
+  "main": "",
+  "keywords": [
+    "nodemongodb"
+  ],
+  "license": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1"
+  }
+}
