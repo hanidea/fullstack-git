@@ -1,0 +1,61 @@
+//img.host.com/1.jpg
+https://img.host.com/2.jpg
+//img.host.com/3.jpg
+https://img.host.com/4.png
+//img.host.com/5.jpg
+https://img.host.com/6.png
+//img.host.com/7.jpg
+https://img.host.com/8.jpg
+
+http:(\/\/.+\.jpg)
+
+02-03-2006
+test/07/tu
+08-07-2016
+05-09-1987
+12345/456/5432
+123/567/7896
+12345/67/45
+
+^(\d{4})[/-](\d{2})[/-](\d{2})$
+
+var reg = /\bis\b/g;
+var reg = new RegExp('\\bis\\b','g')
+
+'a1b2c3d4'.replace(/[abc]/g,'X')
+'a1b2c3d4'.replace(/[^abc]/g,'X')
+'a1b2c3d4z8x7W7T3C2'.replace(/[a-zA-Z]/g,'Q')
+'2016-09-09'.replace(/[0-9-]/g,'A')
+ab\d.
+
+'This is a boy'.replace(/is/g,'0')
+'This is a boy'.replace(/\bis\b/g,'0')
+'This is a boy'.replace(/\Bis\b/g,'0')
+
+'@123@abc@'.replace(/@./g,'Q')
+'@123@abc@'.replace(/^@./g,'Q')
+'@123@abc@'.replace(/.@/g,'Q')
+'@123@abc@'.replace(/.@$/g,'Q')
+
+\d{20}\w\d?\w+\d*\d{3}\w{3,5}\d{3,}
+
+'12345678'.replace(/\d{3,6}?/g,'X')
+
+'a1b2c3d4z'.replace(/([a-z]\d){3}/g,'Q')
+
+'ByronCasper'.replace(/Byron|Casper/g,'X')
+
+'2018-3-23'.replace(/(\d{4})-(\d{1})-(\d{2})/g,'$2/$3/$1')
+
+(?:Byron).(ok)
+
+\w(?=\d)
+
+'a2*3'.replace(/\w(?=\d)/g,'X')
+'a2*34v8'.replace(/\w(?=\d)/g,'X')
+'a2*34vv'.replace(/\w(?!\d)/g,'X')
+'a,b,c,d'.split(',')
+'a1b2c3d4e'.split(/\d/g)
+
+'a1b2c3d4e5'.replace(/\d/g,function(match,index,origin){console.log(index);return parseInt(match)+1});
+'a1b2c3d4e5'.replace(/(\d)(\w)(\d)/g,function(match,group1,group2,group3,index,origin){console.log(match);return group1+group3});
