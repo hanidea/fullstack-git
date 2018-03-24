@@ -4,7 +4,7 @@
 //
 // var insertData = function(db){
 //   // 往test数据库里新建一个site集合，并插入一条数据
-//   db.collection('site').insertOne({name: 'guojc', age: 99, hobby: 'movie'}, function(err, result){
+//   db.collection('site').insertOne({name: 'tt', age: 99, hobby: 'movie'}, function(err, result){
 //     console.log('inserted successly');
 //     console.log(result);
 //     db.close();
