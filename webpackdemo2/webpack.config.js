@@ -19,6 +19,14 @@ module.exports = {
       loader: "babel-loader"
     },
     {
+      test:/\.html$/,
+      loader:'html-loader'
+    },
+    {
+      test:/\.tpl$/,
+      loader:'ejs-loader'
+    },
+    {
       test:/\.css$/,
       use: [
         'style-loader',
@@ -32,6 +40,48 @@ module.exports = {
           ),
         ] 
         }} 
+      ]
+    },
+    {
+      test:/\.less$/,
+      use:[
+        'style-loader',
+        'css-loader?importLoaders=1',
+        {loader: 'postcss-loader', options: { ident: 'postcss',
+        plugins: (loader) => [
+          require('postcss-cssnext')(
+            {
+              browsers:['last 5 version']
+            }
+          ),
+        ] 
+        }},
+        'less-loader',
+      ]
+    },
+    {
+      test:/\.scss$/,
+      use:[
+        'style-loader',
+        'css-loader?importLoaders=1',
+        {loader: 'postcss-loader', options: { ident: 'postcss',
+        plugins: (loader) => [
+          require('postcss-cssnext')(
+            {
+              browsers:['last 5 version']
+            }
+          ),
+        ] 
+        }},
+        'sass-loader',
+      ]
+    },
+    {
+      test:/\.(png|jpg|git|svg)$/i,
+      //loader:'file-loader',
+      use:[
+        'url-loader?limit=80000&name=assets/[name]-[hash:5].[ext]',
+        'image-webpack-loader'
       ]
     }
   ]
