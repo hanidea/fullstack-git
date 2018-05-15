@@ -35,7 +35,7 @@
               <span class="artist">{{item.artist}}</span>
             </div>
             <span class="duration">{{item.duration}}</span>
-            <div class="photo"><img :src="item.poster"></div>
+            <div class="photo"><img v-bind:src="item.poster"></div>
           </a>
         </li>
       </ol>
