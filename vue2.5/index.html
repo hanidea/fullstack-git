@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue"/>
+            <button @click="handleClick">提交</button>
+        </div>
+        <ul>
+            <todo-item 
+            v-for="(item, index) of list"
+            :key="index" 
+            :content="item" 
+            :index="index"
+            @delete="handleDelete"
+            ></todo-item>
+        </ul>
+        <!-- <h1 @click="handleClick" :title="title">{{msg}}</h1> -->
+        <!-- <input v-model="firstName"/>
+        <input v-model="lastName"/>
+        <div>{{fullName}}</div>
+        <div>{{count}}</div> -->
+        <!-- <div v-if="show">hello world</div> -->
+        <!-- <div v-show="show">hello world</div>
+        <button @click="handleClick">toggle</button>
+        <ul>
+            <li v-for="(item, index) of list" :key="index">{{item}}</li>
+        </ul> -->
+    </div>
+    
+    <script>
+        // Vue.component('todo-item',{
+        //     template: '<li>item</li>'
+        // })
+        var TodoItem = {
+            props: ['content','index'],
+            template: '<li @click="handleClick">{{content}}</li>',
+            methods: {
+                handleClick: function() {
+                    this.$emit('delete', this.index)
+                }
+            }
+        }
+        new Vue({
+            el: "#root",
+            components:{
+                'todo-item': TodoItem
+            },
+            data: {
+                inputValue: '',
+                list: []
+            },
+            methods: {
+                handleClick: function() {
+                    this.list.push(this.inputValue)
+                    this.inputValue = ''
+                },
+                handleDelete: function(index) {
+                    this.list.splice(index, 1)
+                }
+            }
+            // data: {
+            //     msg: "hello world",
+            //     title: "this is good",
+            //     content: "this is content",
+            //     firstName:'',
+            //     lastName:'',
+            //     count: 0,
+            //     show: true,
+            //     list: [1,2,3]
+            // },
+            // methods: {
+            //     handleClick: function() {
+            //         this.show = !this.show
+            //     }
+            // }
+            // computed: {
+            //     fullName: function() {
+            //         return this.firstName + ' ' + this.lastName
+
+            //     }
+            // },
+            // watch: {
+            //     fullName: function() {
+            //         this.count ++
+            //     }
+            // }
+            // methods: {
+            //     handleClick: function() {
+            //         this.msg = "good"
+            //     }
+            // }
+        })
+    </script>
+</body>
+</html>
