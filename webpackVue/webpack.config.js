@@ -16,7 +16,7 @@ const config = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue-loader'
+                use: 'vue-loader'
             },
             {
                 test: /\.css$/,
@@ -46,12 +46,6 @@ const config = {
                 ]
             },
         ]
-    },resolve: {
-        alias: {
-            //开发环境使用vue.esm.js'
-            'vue$':'vue/dist/vue.esm.js'
-        },
-        extensions: ['*','.js','.vue','.json']
     },
     plugins: [
         // make sure to include the plugin!

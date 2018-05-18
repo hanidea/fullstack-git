@@ -1,11 +1,13 @@
 <template>
-    <div id="test">{{content}}</div>
+    <div id="root">{{content}}</div>
 </template>
 
 <script>
 export default {
-    data: {
-        content: 'abc'
+      data () {
+        return {
+            content:"vue + webpack"
+        }
     }
 }
 </script>
