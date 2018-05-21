@@ -17,6 +17,6 @@ export default {
 
 <style>
 .main>p{
-    color: #000;
+    color:blue;
 }
 </style>

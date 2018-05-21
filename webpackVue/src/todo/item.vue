@@ -26,18 +26,17 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style scoped>
 .todo-item{
-  position relative
-  background-color #fff
-  font-size 24px
-  border-bottom 1px solid rgba(0,0,0,0.06)
-  &:hover{
-    .destory:after{
+  position:relative;
+  background-color:#fff;
+  font-size:24px;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.todo-item:hover .destory:after{
       content: '×'
-    }
   }
-  label{
+label{
     white-space: pre-line;
     word-break: break-all;
     padding: 15px 60px 15px 15px;
@@ -45,32 +44,30 @@ export default {
     display: block;
     line-height: 1.2;
     transition: color 0.4s;
-  }
-  &.completed{
-    label{
-      color: #d9d9d9;
-      text-decoration line-through
-    }
-  }
 }
+.todo-item.completed label{
+      color: #d9d9d9;
+      text-decoration:line-through
+  }
 .toggle{
   text-align: center;
   width: 40px;
   height: 40px;
   position: absolute;
-  top: 0;
-  bottom: 0;
   margin: auto 0;
   border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
-  outline none
-  &:after{
-    content url('../assets/images/round.svg')
-  }
-  &:checked:after{
-    content url('../assets/images/done.svg')
-  }
+  outline:none;
+  margin-top: 10px;
 }
+.toggle:after{
+    content:url('../assets/images/round.svg')
+  }
+.toggle:checked:after{
+    content:url('../assets/images/done.svg')
+  }
 .destory{
   position: absolute;
   top: 0;
@@ -83,11 +80,11 @@ export default {
   color: #cc9a9a;
   margin-bottom: 11px;
   transition: color 0.2s ease-out;
-  background-color transparent
-  appearance none
-  border-width 0
-  cursor pointer
-  outline none
+  background-color:transparent;
+  appearance:none;
+  border-width:0;
+  cursor:pointer;
+  outline:none
 }
 </style>
 
