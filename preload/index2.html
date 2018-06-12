@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无序加载-QQ表情</title>
+    <style>
+        body,p,ul,li{
+            padding: 0px;
+            margin: 0px;
+        }
+        body{
+            background-color:#eee;
+        }
+        a{
+            text-decoration: none;
+            outline: none;
+        }
+        li{
+            list-style-type:none;
+        }
+        .box{
+            margin: 150px 0 0 200px;
+        }
+        #face-btn{
+            display: block;
+            background: url(img/timg.gif) no-repeat 0 0px;
+            width:90px;
+            height:35px;
+            text-indent:40px;
+            color:#333;
+        }
+        #face-btn:hover{
+            background-position: 0 -35px;
+        }
+        .panel{
+            width:240px;
+            padding: 2px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            display: none;
+        }
+        .loading{
+            text-align: center;
+        }
+        .list li{
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 1px solid #fff;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .list li:hover{
+            border-color:#06c;
+        }
+        .list li img{
+            width:24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <a href="javascript:;" id="face-btn">表情</a>
+    <div class="panel">
+        <p class="loading">表情加载中,请稍后...</p>
+        <!-- <ui class="list">
+            <li><img src="face/00.gif" alt=""></li>
+            <li><img src="face/01.gif" alt=""></li>
+            <li><img src="face/02.gif" alt=""></li>
+            <li><img src="face/03.gif" alt=""></li>
+            <li><img src="face/04.gif" alt=""></li>
+            <li><img src="face/05.gif" alt=""></li>
+            <li><img src="face/06.gif" alt=""></li>
+            <li><img src="face/07.gif" alt=""></li>
+            <li><img src="face/08.gif" alt=""></li>
+            <li><img src="face/09.gif" alt=""></li>
+            <li><img src="face/10.gif" alt=""></li>
+            <li><img src="face/11.gif" alt=""></li>
+            <li><img src="face/12.gif" alt=""></li>
+            <li><img src="face/13.gif" alt=""></li>
+            <li><img src="face/14.gif" alt=""></li>
+            <li><img src="face/15.gif" alt=""></li>
+            <li><img src="face/16.gif" alt=""></li>
+            <li><img src="face/17.gif" alt=""></li>
+            <li><img src="face/18.gif" alt=""></li>
+            <li><img src="face/19.gif" alt=""></li>
+            <li><img src="face/20.gif" alt=""></li>
+            <li><img src="face/21.gif" alt=""></li>
+            <li><img src="face/22.gif" alt=""></li>
+            <li><img src="face/23.gif" alt=""></li>
+            <li><img src="face/24.gif" alt=""></li>
+            <li><img src="face/25.gif" alt=""></li>
+        </ui> -->
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="preload.js"></script>
+<script>
+    var $btn = $('#face-btn'),
+        $panel = $('.panel');
+    var imgs = []
+    for(var i=0;i<26;i++){
+        imgs[i]='face/'+(i+1)+'.gif';
+    }
+    var len = imgs.length;
+    $btn.on('click',function(e){
+        e.stopPropagation();
+        $panel.show();
+        $.preload(imgs,{
+            all:function(){
+                var html = '';
+                html+='<ul class="list">';
+                for(var i = 0;i<len;i++){
+                    html+=' <li><img src="'+imgs[i]+'" alt=""></li>';
+                }
+                html += '</ul>';
+                //$panel.html(html);
+                setTimeout(function(){
+                    $panel.html(html);
+                },1000);
+            }
+        });
+    });
+    $(document).on('click',function(){
+        $panel.hide();
+    })
+</script>
+</body>
+</html>
