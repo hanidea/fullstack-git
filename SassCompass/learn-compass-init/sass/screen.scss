@@ -1,0 +1,200 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/**
+*CONTENTS
+*
+*SETTINGS
+*variables...........变量集中存储文件
+*mixin...............mixin集中存储文件
+*TOOLS
+*
+*COMPONENTS
+*reset...............Compass内置浏览器重置样式文件
+*
+*BUSINESS
+*
+*BASE
+*screen.scss.........针对当前站点主页的样式修饰
+*
+*/
+@import "variables","mixin","compass/reset";
+//@import "variables","mixin";
+@import "compass/css3";
+@import "compass/typography/links";
+@import "compass/typography/lists";
+@import "compass/typography/text";
+@import "compass/typography/vertical_rhythm";
+// 16 * 1.5 24px;
+.analyzer-logo{/*cache buster*/
+    // background-image: inline-image('logo1.png')
+    background-image: image-url('logo1.png');
+}
+$base-font-size:16px;
+$base-line-height:24px;
+@include establish-baseline();
+body{
+    @include debug-vertical-alignment();
+}
+h1{
+    // font-size:3em;/*48/16*/
+    // line-height: 1.5em;
+    @include adjust-font-size-to(48px);
+}
+h2{
+    // font-size:2.25em;/*36/16*/
+    // line-height: 1.333em;
+    @include adjust-font-size-to(36px);
+}
+h3{
+    // font-size:1.5em;/*24/16*/
+    // line-height: 2em;
+    @include adjust-font-size-to(24px);
+}
+h4{
+    // font-size:1.3125em;/*21/16*/
+    // line-height: 2.2857em;
+    @include adjust-font-size-to(21px);
+}
+h5{
+    // font-size:1.125em;/*18/16*/
+    // line-height: 1.3333em;
+    @include adjust-font-size-to(18px);
+}
+h6,p{
+    // font-size:1em;
+    // line-height: 1.5em;
+    @include adjust-font-size-to(16px);
+    @include leader();
+    @include trailer();
+}
+// .text-force-wrap{
+//     @include force-wrap();
+// }
+// .text-nowrap{
+//     @include nowrap();
+// }
+// $use-mozilla-ellipsis-binding:true;
+// .text-ellipsis{
+//     @include ellipsis();
+// }
+// .text-hide{
+//     // @include hide-text();
+//     @include squish-text();
+// }
+// .btn-find{
+//     @include replace-text("http://jpg");
+// }
+// .list-unstyled{
+//     @include no-bullets();
+// }
+// .list-unstyled-li{
+//     @include no-bullet();
+// }
+// .list-inline{
+//     @include inline-list();
+// }
+// .list-horizontal{
+//     @include horizontal-list(false);
+// }
+// .list-inline-block{
+//     @include inline-block-list();
+// }
+// .test-inline-block{
+//     @include inline-block();
+// }
+// .test-opacity{
+//     @include opacity(.3);
+// }
+// a{
+//     //@include hover-link();
+//     // @include link-colors(#00c,#0cc,#c0c,#ccc,#cc0);
+//     @include unstyled-link();
+// }
+// $supported-browsers:chrome;
+// $browser-minimum-versions:("ie":"8");
+// @debug browsers();
+// @import "compass/support";
+// @import "normalize";
+// @import "compass/layout";
+// @import "compass/layout/grid-background";
+// @import "compass/layout/sticky-footer";
+// @import "compass/layout/stretching";
+// /*分割*/
+// @import "normalize-version";
+// /*分割*/
+// @import "normalize/base";
+// /*分割*/
+// @import "normalize/html5";
+// /*分割*/
+// @import "normalize/links";
+// .stretch-full{
+//     @include stretch();
+// }
+// @include sticky-footer(30px);
+// $grid-background-column-color:rgba(255,0,0,.25);
+// #root{
+//     @include grid-background();
+// }
+// 主标题样式
+.headline{
+    font-family:$headline-ff;
+}
+/*页面主体内容样式*/
+.main-sec{
+    font-family:$main-sec-ff;
+    // .headline{
+    //     font: {
+    //         family:$main-sec-ff;
+    //         size:16px;
+    //     }
+    // }
+    // .detail{
+    //     font-size: 12px;
+    // }
+    @at-root{
+        .main-sec-headline{
+            font: {
+                family:$main-sec-ff;
+                size:16px;
+            }
+        }
+        .main-sec-detail{
+            font-size:12px;
+        }
+    }
+}
+// a{
+//     &:hover{
+//         color:blue;
+//     }
+// }
+p{
+    color:hsl(270,100%,50%);
+}
+.webdemo-sec{
+    @include col-sm(30%);
+    @include box-shadow(1px 1px 3px 2px #cfcecf);
+    &:hover{
+        background-color: #f5f5f5;
+    }
+}
+// .error.instrusion{
+//     background-image: url("/image/hacked.png")
+// }
+%error{
+    color:#f00;
+}
+.serious-error
+{
+    @extend %error;
+    border:1px #f00;
+}
+
+// @debug compass-env();
+//@debug font-files();
+//@debug font-face("FontAwesome",font-files("",""));
+#{append-selector("p,div,span",".bar")}{
+    color:#333;
+}
