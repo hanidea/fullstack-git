@@ -22,53 +22,95 @@
 @import "variables","mixin","compass/reset";
 //@import "variables","mixin";
 @import "compass/css3";
+@import "compass/support";
 @import "compass/typography/links";
 @import "compass/typography/lists";
 @import "compass/typography/text";
 @import "compass/typography/vertical_rhythm";
+@import "compass/utilities/color";
+@import "compass/utilities/print";
+@import "compass/utilities/tables";
+@import "compass/utilities/general";
+@import "icons";
+.goods-price{
+    $table-color:#7a98c6;
+    @include outer-table-borders();
+    @include inner-table-borders(1px,darken($table-color,40%));
+    @include table-scaffolding();
+    //@include alternating-rows-and-columns($table-color,adjust-hue($table-color,-120deg),#222);
+}
+
+// .clearfix{
+//     //@include clearfix();
+//     //@include pie-clearfix();
+//     @include legacy-pie-clearfix();
+// }
+// .underscore-hack-display{
+//     @include underscore-hack(display,block,inline);
+// }
+// .tag-cloud-container{
+//     @include tag-cloud(24px);
+//   }
+  
+// .test-min-height{
+// @include min-height(10px);
+// }
+// .pull-left{
+//     @include float(left);
+// }
+// .need-has-layout{
+//     @include has-layout();
+// }
+
+// @include print-utilities(screen);
+
+// @debug brightness(#000);
+// @debug brightness(#ccc);
+// @debug brightness(#fff);
+
 // 16 * 1.5 24px;
 .analyzer-logo{/*cache buster*/
     // background-image: inline-image('logo1.png')
-    background-image: image-url('logo1.png');
+    background-image: image-url('logo/logo1.png');
 }
 $base-font-size:16px;
 $base-line-height:24px;
-@include establish-baseline();
-body{
-    @include debug-vertical-alignment();
-}
-h1{
-    // font-size:3em;/*48/16*/
-    // line-height: 1.5em;
-    @include adjust-font-size-to(48px);
-}
-h2{
-    // font-size:2.25em;/*36/16*/
-    // line-height: 1.333em;
-    @include adjust-font-size-to(36px);
-}
-h3{
-    // font-size:1.5em;/*24/16*/
-    // line-height: 2em;
-    @include adjust-font-size-to(24px);
-}
-h4{
-    // font-size:1.3125em;/*21/16*/
-    // line-height: 2.2857em;
-    @include adjust-font-size-to(21px);
-}
-h5{
-    // font-size:1.125em;/*18/16*/
-    // line-height: 1.3333em;
-    @include adjust-font-size-to(18px);
-}
-h6,p{
-    // font-size:1em;
-    // line-height: 1.5em;
-    @include adjust-font-size-to(16px);
-    @include leader();
-    @include trailer();
-}
+// @include establish-baseline();
+// body{
+//     @include debug-vertical-alignment();
+// }
+// h1{
+//     // font-size:3em;/*48/16*/
+//     // line-height: 1.5em;
+//     @include adjust-font-size-to(48px);
+// }
+// h2{
+//     // font-size:2.25em;/*36/16*/
+//     // line-height: 1.333em;
+//     @include adjust-font-size-to(36px);
+// }
+// h3{
+//     // font-size:1.5em;/*24/16*/
+//     // line-height: 2em;
+//     @include adjust-font-size-to(24px);
+// }
+// h4{
+//     // font-size:1.3125em;/*21/16*/
+//     // line-height: 2.2857em;
+//     @include adjust-font-size-to(21px);
+// }
+// h5{
+//     // font-size:1.125em;/*18/16*/
+//     // line-height: 1.3333em;
+//     @include adjust-font-size-to(18px);
+// }
+// h6,p{
+//     // font-size:1em;
+//     // line-height: 1.5em;
+//     @include adjust-font-size-to(16px);
+//     @include leader();
+//     @include trailer();
+// }
 // .text-force-wrap{
 //     @include force-wrap();
 // }
