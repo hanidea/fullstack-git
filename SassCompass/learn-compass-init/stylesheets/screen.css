@@ -265,67 +265,67 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   text-align: right;
 }
 
-/* line 72, ../sass/screen.scss */
+/* line 71, ../sass/screen.scss */
 .analyzer-logo {
   /*cache buster*/
   background-image: url('../images/logo/logo1.png?1528962613');
 }
 
-/* line 183, ../sass/screen.scss */
+/* line 182, ../sass/screen.scss */
 .headline {
   font-family: Braggadocio, Arial, Verdana, Helvetica, sans-serif;
 }
 
 /*页面主体内容样式*/
-/* line 187, ../sass/screen.scss */
+/* line 186, ../sass/screen.scss */
 .main-sec {
   font-family: Arial, Verdana, Helvetica, sans-serif;
 }
-/* line 199, ../sass/screen.scss */
+/* line 198, ../sass/screen.scss */
 .main-sec-headline {
   font-family: Arial, Verdana, Helvetica, sans-serif;
   font-size: 16px;
 }
 
-/* line 205, ../sass/screen.scss */
+/* line 204, ../sass/screen.scss */
 .main-sec-detail {
   font-size: 12px;
 }
 
-/* line 215, ../sass/screen.scss */
+/* line 214, ../sass/screen.scss */
 p {
   color: #8000ff;
 }
 
-/* line 218, ../sass/screen.scss */
+/* line 217, ../sass/screen.scss */
 .webdemo-sec {
   -moz-box-shadow: 1px 1px 3px 2px #cfcecf;
   -webkit-box-shadow: 1px 1px 3px 2px #cfcecf;
   box-shadow: 1px 1px 3px 2px #cfcecf;
 }
 @media (min-width: 768px) {
-  /* line 218, ../sass/screen.scss */
+  /* line 217, ../sass/screen.scss */
   .webdemo-sec {
     width: 30%;
     float: left;
   }
 }
-/* line 221, ../sass/screen.scss */
+/* line 220, ../sass/screen.scss */
 .webdemo-sec:hover {
   background-color: #f5f5f5;
 }
 
-/* line 228, ../sass/screen.scss */
+/* line 227, ../sass/screen.scss */
 .serious-error {
   color: #f00;
 }
 
-/* line 231, ../sass/screen.scss */
+/* line 230, ../sass/screen.scss */
 .serious-error {
   border: 1px #f00;
 }
 
-/* line 240, ../sass/screen.scss */
+/* line 239, ../sass/screen.scss */
 p.bar, div.bar, span.bar {
   color: #333;
 }
