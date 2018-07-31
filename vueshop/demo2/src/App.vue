@@ -2,6 +2,8 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view/>
+    <!-- <router-view name="title" class="left"></router-view>
+    <router-view name="img" class="right"></router-view> -->
   </div>
 </template>
 
@@ -19,5 +21,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.left,.right{
+  float: left;
+  width:49%;
+  border: 1px solid gray;
 }
 </style>

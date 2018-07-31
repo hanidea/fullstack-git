@@ -1,16 +1,28 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
+import VueResource from 'vue-resource'
+import VueRe from '@/components/VueRe'
+import HelloWorld from '@/components/HelloWorld'
 import GoodsList from '@/views/GoodsList'
 import Title from '@/views/Title'
 import Image from '@/views/Image'
 import Cart from '@/views/Cart'
 Vue.use(Router)
-
+Vue.use(VueResource)
 export default new Router({
   mode:'hash',
   // mode:'history',
   routes: [
+    {
+      path: '/vuere/',
+      name: 'VueRe',
+      component: VueRe
+    },
+    {
+      path: '/helloworld/',
+      name: 'HelloWorld',
+      component: HelloWorld
+    },
     {
       // path: '/',
       // name: 'HelloWorld',
@@ -18,7 +30,12 @@ export default new Router({
       // path: '/goods/:goodsId/user/:name',
       path: '/goods/',
       name: 'GoodsList',
-      component: GoodsList
+      // component: GoodsList
+      components:{
+        default:GoodsList,
+        title:Title,
+        img:Image
+      }
       // children:[
       //   {
       //     path:'title',
@@ -33,7 +50,7 @@ export default new Router({
       // ]
     },
     {
-      path:'/cart',
+      path:'/cart/:cartId',
       name:'cart',
       component:Cart
     }
