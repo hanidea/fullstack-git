@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueResource from 'vue-resource'
-import VueRe from '@/components/VueRe'
 import HelloWorld from '@/components/HelloWorld'
 import GoodsList from '@/views/GoodsList'
 import Title from '@/views/Title'
