@@ -13,15 +13,35 @@
     <div id="app" class="container">
         <h1>vue-resource插件</h1>
        <a href="javascript:;" class="btn btn-primary" v-on:click="get">Get 请求</a>
-         <!-- <a href="javascript:;" class="btn btn-primary" v-on:click="post">Post 请求</a>
-        <a href="javascript:;" class="btn btn-primary" v-on:click="jsonp">JSONP 请求</a> -->
+       <a href="javascript:;" class="btn btn-primary" @click="post">Post 请求</a>
+       <a href="javascript:;" class="btn btn-primary" @click="jsonp">JSONP 请求</a>
+       <a href="javascript:;" class="btn btn-primary" @click="http">Http 请求</a>
        <div>{{msg}}</div>
     </div>
     <script>
-        new Vue({
+        new Vue({      
             el:"#app",
             data:{
                 msg:''
+            },
+            mounted:function(){
+                // Vue.http.options.headers = {
+                //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                //     'Access-Control-Allow-Methods':'POST'
+                // }
+                // Vue.http.options.emulateJSON = true;
+                // Vue.http.options.emulateHTTP = true;
+                Vue.http.interceptors.push(function(request,next){
+                    console.log("request init.")
+                    next(function (response){
+                        console.log("response init.")
+                        return response;
+                    })
+                });
+                
+            },
+            http:{
+                // root:"http://localhost:5500/demo2/"
             },
             methods:{
                 get:function(){
@@ -34,6 +54,67 @@
                         }
                     }).then(res=>{
                         this.msg = res.data;
+                    },error=>{
+                        this.msg = error;
+                    });
+                },
+                post:function(){
+                    // this.$http.post("package.json",{
+                    //     userId:"102"
+                    // },{
+                    //     headers:{
+                    //         access_token:"abc",
+                    //     }
+                    // }).then(function(res){
+                    //     this.msg = res.data;
+                    // });
+                    var _this = this;
+                    var params = {
+                    username:"sunnyboysoft@163.com",
+                    password:"hdeeciu4ZauaDaWF/g+92R8FqNMVA8zoX0UWHinjRM6ND8PMFP9Bt2dr0vGUzZPKXDkzhOJbn3Le0ZcbCiQ1Nx7AIvsrwMzjcSStWNzdyBftzsJS0xsUrtmhqzqaWquXKQoEYgDrP+mNrv0C2ITSpbs+QOql4fPvNSWeAVu54XE=",
+                    remember:"1",
+                    pwencode:"1",
+                    browser_key:"c1eafecb03c5ef07651fb7bd9a7f4b72",
+                    referer:"http://www.imooc.com"
+                    }
+                    this.$http.post("/demo2/package.json",params).then(function (res) {
+                    console.log("res:"+res.data.msg);
+                    _this.msg = res.data;
+                    }, function (error) {
+                    console.log("error:"+error);
+                    _this.msg = error;
+                    });
+                },
+
+                jsonp:function(){
+                    this.$http.jsonp("http://www.imooc.com/course/ajaxskillcourse?cid=796",{
+                        params:{
+                            userId:"1001"
+                        }
+                        }).then(function (res) {
+                        console.log("res:"+res.data.msg);
+                        this.msg = res.data;
+                        }, function (error) {
+                        console.log("error:"+error);
+                        });
+                },
+                http: function () {
+                    var _this = this;
+                    this.$http({
+                    url:"package.json",
+                    method:"get",
+                    params:{
+                        userId:"103"
+                    },
+                    headers:{
+                        token:"123"
+                    },
+                    timeout:5,
+                    before: function () {
+                        console.log("before init")
+                    }
+                    }).then(function (res) {
+                    this.msg = res.data;
                     });
                 }
             }
