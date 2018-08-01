@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>vue-resource</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="node_modules/vue/dist/vue.js"></script>
-    <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue-resource/dist/vue-resource.js"></script>
 </head>
 <body>
     <div id="app" class="container">
@@ -41,7 +41,7 @@
                 
             },
             http:{
-                // root:"http://localhost:5500/demo2/"
+                root:"http://127.0.0.1:5500/demo2/"
             },
             methods:{
                 get:function(){
@@ -101,7 +101,7 @@
                 http: function () {
                     var _this = this;
                     this.$http({
-                    url:"package.json",
+                    url:"/demo2/package.json",
                     method:"get",
                     params:{
                         userId:"103"
