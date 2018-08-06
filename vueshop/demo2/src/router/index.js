@@ -13,11 +13,6 @@ export default new Router({
   // mode:'history',
   routes: [
     {
-      path: '/vuere/',
-      name: 'VueRe',
-      component: VueRe
-    },
-    {
       path: '/helloworld/',
       name: 'HelloWorld',
       component: HelloWorld
@@ -27,14 +22,15 @@ export default new Router({
       // name: 'HelloWorld',
       // component: HelloWorld
       // path: '/goods/:goodsId/user/:name',
-      path: '/goods/',
+      //path: '/goods/',
+      path: '/',
       name: 'GoodsList',
-      // component: GoodsList
-      components:{
-        default:GoodsList,
-        title:Title,
-        img:Image
-      }
+      component: GoodsList,
+      // components:{
+      //   default:GoodsList,
+      //   title:Title,
+      //   img:Image
+      // }
       // children:[
       //   {
       //     path:'title',
