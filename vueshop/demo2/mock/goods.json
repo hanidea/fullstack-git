@@ -5,7 +5,7 @@
         {
             "productId":"100001",
             "productName":"音响",
-            "productPrice":199,
+            "productPrice":1199,
             "productImg":"1.jpg"
         },
         {
@@ -17,7 +17,7 @@
         {
             "productId":"100003",
             "productName":"耳机",
-            "productPrice":99,
+            "productPrice":2299,
             "productImg":"3.jpg"
         }
     ]
