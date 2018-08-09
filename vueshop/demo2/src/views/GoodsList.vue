@@ -17,7 +17,7 @@
               <div class="filter stopPop" id="filter" v-bind:class="{'filterby-show':filterBy}">
                 <dl class="filter-price">
                   <dt>Price:</dt>
-                  <dd><a href="javascript:void(0)" v-bind:class="{'cur':priceChecked=='all'}" @click="priceChecked='all'">All</a></dd>
+                  <dd><a href="javascript:void(0)" v-bind:class="{'cur':priceChecked=='all'}" @click="setAll()">All</a></dd>
                   <dd v-for="(price,index) in priceFilter" >
                     <a href="javascript:void(0)" @click="setPriceFilter(index)" v-bind:class="{'cur':priceChecked==index}">{{price.startPrice}} - {{price.endPrice}}</a>
                   </dd>
@@ -122,6 +122,7 @@ export default {
       }).then((result)=>{
         var res = result.data;
         this.loading = false
+        //console.log(res.status);
         if(res.status=="0"){
           if(flag){
             this.goodsList = this.goodsList.concat(res.result.list);
@@ -168,6 +169,12 @@ export default {
     },
     setPriceFilter(index){
       this.priceChecked=index,
+      this.getGoodsList(),
+      this.page = 1;
+      this.closePop()
+    },
+    setAll(){
+      this.priceChecked="all",
       this.getGoodsList(),
       this.page = 1;
       this.closePop()

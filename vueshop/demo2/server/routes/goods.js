@@ -39,10 +39,7 @@ router.get("/",function(req,res,next){
                 $lte:priceLte
             }
         }
-    }else{
-        
     }
-  
     let goodsModel = Goods.find(params).skip(skip).limit(pageSize);
     goodsModel.sort({'salePrice':sort});
     goodsModel.exec(function(err,doc){
@@ -54,7 +51,7 @@ router.get("/",function(req,res,next){
         }else{
             res.json({
                 status:'0',
-                msg:'',
+                msg:'priceshow',
                 result:{
                     count:doc.length,
                     list:doc
