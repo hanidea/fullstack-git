@@ -2,7 +2,7 @@
 .narbar{
   width:100%;
 }
-.navbar-left-container{
+/* .navbar-left-container{
   float: left;
 }
 .navbar-right-container{
@@ -24,7 +24,7 @@
 }
 .navbar-cart-container{
   float: left;
-} 
+}  */
 
 .accessory-list > ul:after {
   visibility: hidden;
