@@ -9,7 +9,7 @@
             <div class="filter-nav">
               <span class="sortby">Sort by:</span>
               <a href="javascript:void(0)" class="default cur">Default</a>
-              <a @click="sortGoods" href="javascript:void(0)" class="price">Price <svg class="icon icon-arrow-short"><use xlink:href="#icon-arrow-short"></use></svg></a>
+              <a @click="sortGoods" href="javascript:void(0)" class="price">Price <svg class="icon icon-arrow-short" v-bind:class="{'sort-up':!sortFlag}"><use xlink:href="#icon-arrow-short"></use></svg></a>
               <a href="javascript:void(0)" class="filterby stopPop" @click="showFilterPop">Filter by</a>
             </div>
             <div class="accessory-result">
@@ -117,7 +117,7 @@ export default {
         priceLevel:this.priceChecked
       }
       this.loading = true
-      axios.get("/goods",{
+      axios.get("/goods/list",{
         params:param
       }).then((result)=>{
         var res = result.data;
@@ -159,7 +159,7 @@ export default {
         if(res.data.status=="0"){
           alert("加入成功")
         }else{
-          alert("msg:"+res)
+          alert("msg:"+res.data.msg)
         }
       })
     },
@@ -186,3 +186,9 @@ export default {
   }
 }
 </script>
+<style>
+.sort-up{
+  transform:rotate(180deg);
+  transition: all .3s ease-out
+}
+</style>
