@@ -191,4 +191,8 @@ export default {
   transform:rotate(180deg);
   transition: all .3s ease-out
 }
+.btn:hover{
+  background-color: #ffe5e6;
+  transition: all .3s ease-out
+}
 </style>
