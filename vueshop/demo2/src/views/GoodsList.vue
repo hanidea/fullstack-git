@@ -9,7 +9,10 @@
             <div class="filter-nav">
               <span class="sortby">Sort by:</span>
               <a href="javascript:void(0)" class="default cur">Default</a>
-              <a @click="sortGoods" href="javascript:void(0)" class="price">Price <svg class="icon icon-arrow-short" v-bind:class="{'sort-up':!sortFlag}"><use xlink:href="#icon-arrow-short"></use></svg></a>
+              <a @click="sortGoods" href="javascript:void(0)" class="price">Price <svg class="icon-arrow-short" v-bind:class="{'sort-up':!sortFlag}"><symbol id="icon-arrow-short" viewBox="0 0 25 32">
+                <title>arrow-short</title>
+                <path class="path1" d="M24.487 18.922l-1.948-1.948-8.904 8.904v-25.878h-2.783v25.878l-8.904-8.904-1.948 1.948 12.243 12.243z"></path>
+              </symbol><use xlink:href="#icon-arrow-short"></use></svg></a>
               <a href="javascript:void(0)" class="filterby stopPop" @click="showFilterPop">Filter by</a>
             </div>
             <div class="accessory-result">
@@ -62,7 +65,27 @@
             </div>
           </div>
         </div>
-    <div class="md-overlay" v-show="overLayFlag" @click="closePop"></div>
+    <!-- <div class="md-overlay" v-show="overLayFlag" @click="closePop"></div> -->
+    <modal v-bind:mdShow="mdShow" v-on:close="closeModal">
+      <p slot="message">
+        请先登录，否则无法加入到购物中
+      </p>
+      <div slot="btnGroup">
+          <a class="btn btn--m" href="javascript:;" @click="mdShow = false">关闭</a>
+      </div>
+    </modal>
+    <modal v-bind:mdShow="mdShowCart" v-on:close="closeModal">
+      <p slot="message">
+        <svg class="navbar-cart-logo">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-cart"></use>
+        </svg>
+        <span>加入购物车成功</span>
+      </p>
+      <div slot="btnGroup">
+          <a class="btn btn--m" href="javascript:;" @click="mdShowCart = false">继续购物</a>
+          <router-link class="btn btn--m" href="javascript:;" to="/cart">查看购物车</router-link>
+      </div>
+    </modal>
     <nav-footer></nav-footer>
   </div>
 </template>
@@ -73,6 +96,7 @@ import './../assets/css/product.css'
 import NavHeader from '@/components/Header.vue'
 import NavFooter from '@/components/Footer.vue'
 import NavBread from '@/components/NavBread.vue'
+import Modal from '@/components/Modal.vue'
 import axios from 'axios'
 export default {
   data () {
@@ -83,6 +107,8 @@ export default {
       pageSize:8,
       busy:true,
       loading:false,
+      mdShow:false,
+      mdShowCart:false,
       priceFilter:[
         {
           startPrice:'0,00',
@@ -103,7 +129,7 @@ export default {
     }
   },
   components:{
-    NavHeader,NavFooter,NavBread
+    NavHeader,NavFooter,NavBread,Modal
   },
   mounted:function(){
     this.getGoodsList();
@@ -157,11 +183,17 @@ export default {
         productId:productId
       }).then((res)=>{
         if(res.data.status=="0"){
-          alert("加入成功")
+          this.mdShowCart = true;
+          //alert("加入成功")
         }else{
-          alert("msg:"+res.data.msg)
+          //alert("msg:"+res.data.msg)
+          this.mdShow = true;
         }
       })
+    },
+    closeModal(){
+       this.mdShow = false;
+       this.mdShowCart = false;
     },
     showFilterPop(){
        this.filterBy=true,
