@@ -12,11 +12,11 @@ export default new Router({
   mode:'hash',
   // mode:'history',
   routes: [
-    {
-      path: '/helloworld/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
+    // {
+    //   path: '/helloworld/',
+    //   name: 'HelloWorld',
+    //   component: HelloWorld
+    // },
     {
       // path: '/',
       // name: 'HelloWorld',
@@ -45,9 +45,14 @@ export default new Router({
       // ]
     },
     {
-      path:'/cart/:cartId',
-      name:'cart',
+      path:'/Cart',
+      name: 'Cart',
       component:Cart
     }
+    // {
+    //   path:'/cart/:cartId',
+    //   name:'cart',
+    //   component:Cart
+    // }
   ]
 })
