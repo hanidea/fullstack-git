@@ -102,7 +102,7 @@ router.get('/getCartCount',function (req,res,next) {
 //查询当前用户的购物车数据
 router.get('/cartList',function (req,res,next) {
   var userId = req.cookies.userId;
-  User.findOne({userId:userId},function (err,doc) {
+  Users.findOne({userId:userId},function (err,doc) {
     if(err){
       res.json({
         status: '1',
@@ -124,7 +124,7 @@ router.get('/cartList',function (req,res,next) {
 //购物车删除
 router.post("/cartDel",function(req,res,next){
   var userId = req.cookies.userId,productId = req.body.productId;
-  User.update({
+  Users.update({
     userId:userId
   },{
     $pull:{
@@ -155,7 +155,7 @@ router.post('/cartEdit',function (req,res,next) {
       productId = req.body.productId,
       productNum = req.body.productNum,
       checked = req.body.checked;
-  User.update({'userId':userId,'cartList.productId':productId}, {
+  Users.update({'userId':userId,'cartList.productId':productId}, {
     'cartList.$.productNum': productNum,
     'cartList.$.checked': checked
   },function (err,doc) {
@@ -179,7 +179,7 @@ router.post('/cartEdit',function (req,res,next) {
 router.post('/editCheckAll',function (req,res,next) {
   var userId = req.cookies.userId,
       checkAll = req.body.checkAll?'1':'0';
-  User.findOne({userId:userId},function (err,user) {
+  Users.findOne({userId:userId},function (err,user) {
     if(err) {
       res.json({
         status: '1',

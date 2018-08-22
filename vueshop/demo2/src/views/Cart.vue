@@ -127,7 +127,7 @@
                 Item total:<span class="total-price">{{totalPrice | currency('$')}}</span>
               </div>
               <div class="btn-wrap">
-                <a href="javascript:;" class="btn btn--red" v-bind:class="{'btn--dis':checkedCount==0}" @click="checkOut">Checkout</a>
+                <!-- <a href="javascript:;" class="btn btn--red" v-bind:class="{'btn--dis':checkedCount==0}" @click="checkOut">Checkout</a> -->
               </div>
             </div>
           </div>
@@ -270,14 +270,14 @@
             console.log('update suc');
           }
         })
-      },
-      checkOut(){
-        if(this.checkedCount>0){
-          this.$router.push({  //也可以用router-link
-            path:'/address'
-          });
-        }
       }
+      // checkOut(){
+      //   if(this.checkedCount>0){
+      //     this.$router.push({  //也可以用router-link
+      //       path:'/address'
+      //     });
+      //   }
+      // }
     }
   }
 </script>
