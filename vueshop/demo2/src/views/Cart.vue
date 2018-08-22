@@ -147,6 +147,28 @@
 
 
 <style>
+.input-sub,.input-add{
+    min-width: 40px;
+    height: 100%;
+    border: 0;
+    color: #605F5F;
+    text-align: center;
+    font-size: 16px;
+    overflow: hidden;
+    display: inline-block;
+    background: #f0f0f0;
+  }
+  .item-quantity .select-self-area{
+    background:none;
+    border: 1px solid #f0f0f0;
+  }
+  .item-quantity .select-self-area .select-ipt{
+    display: inline-block;
+    padding:0 3px;
+    width: 30px;
+    min-width: 30px;
+    text-align: center;
+  }
 
 </style>
 
@@ -187,11 +209,13 @@
       },
       totalPrice(){
         var money = 0 ;
+        if(this.cartList.length > 0) {
         this.cartList.forEach((item)=>{
           if(item.checked=='1'){
             money += parseFloat(item.salePrice)*parseInt(item.productNum);
           }
         });
+        }
         return money;
       }
     },
@@ -226,7 +250,7 @@
           if(res.status == '0'){
             this.modalConfirm = false;
             this.init();
-            this.$store.commit('updateCartCount',-this.item.productNum);
+            //this.$store.commit('updateCartCount',-this.item.productNum);
           }
         })
       },
@@ -254,14 +278,16 @@
             }else if (flag=='minus'){
               num = -1;
             }
-            this.$store.commit('updateCartCount',num);
+            //this.$store.commit('updateCartCount',num);
           })
       },
       toggleCheckAll(){
         var flag = !this.checkAllFlag;
+        if(this.cartList.length > 0) {
         this.cartList.forEach((item)=>{
           item.checked = flag?'1':'0';
         });
+        }
         axios.post('/users/editCheckAll',{
           checkAll:flag
         }).then((response)=>{
