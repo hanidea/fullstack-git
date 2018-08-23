@@ -20,9 +20,4 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-/* .left,.right{
-  float: left;
-  width:49%;
-  border: 1px solid gray;
-} */
 </style>
