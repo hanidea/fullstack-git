@@ -94,7 +94,7 @@
                 </div>
                 <div class="cart-tab-5">
                   <div class="cart-item-opration">
-                    <a href="javascript:;" class="item-edit-btn" @click="delCartConfirm(item.productId)">
+                    <a href="javascript:;" class="item-edit-btn" @click="delCartConfirm(item)">
                       <svg class="icon icon-del">
                         <use xlink:href="#icon-del"></use>
                       </svg>
@@ -236,21 +236,23 @@
       closeModal(){
         this.modalConfirm = false;
       },
-      delCartConfirm(productId){
-        this.productId = productId;
-//        this.delItem = item;
+      delCartConfirm(item){
+        //this.productId = productId;
+        this.delItem = item;
         this.modalConfirm = true;
       },
       delCart(){
         axios.post('/users/cartDel',{
-          productId:this.productId
-//          productId:this.delItem.productId
+          //productId:this.productId,
+          productId:this.delItem.productId
         }).then((response)=>{
           let res = response.data;
           if(res.status == '0'){
             this.modalConfirm = false;
-            this.init();
             //this.$store.commit('updateCartCount',-this.item.productNum);
+            var delCount = this.delItem.productNum;
+            this.$store.commit("updateCartCount",-delCount);
+            this.init();
           }
         })
       },
@@ -278,7 +280,7 @@
             }else if (flag=='minus'){
               num = -1;
             }
-            //this.$store.commit('updateCartCount',num);
+            this.$store.commit('updateCartCount',num);
           })
       },
       toggleCheckAll(){
