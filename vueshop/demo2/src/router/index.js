@@ -6,6 +6,7 @@ import GoodsList from '@/views/GoodsList'
 import Title from '@/views/Title'
 import Image from '@/views/Image'
 import Cart from '@/views/Cart'
+import Address from '@/views/Address'
 Vue.use(Router)
 Vue.use(VueResource)
 export default new Router({
@@ -48,6 +49,11 @@ export default new Router({
       path:'/Cart',
       name: 'Cart',
       component:Cart
+    },
+    {
+      path:'/Address',
+      name: 'Address',
+      component:Address
     }
     // {
     //   path:'/cart/:cartId',
