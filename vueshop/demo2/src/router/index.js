@@ -7,6 +7,8 @@ import Title from '@/views/Title'
 import Image from '@/views/Image'
 import Cart from '@/views/Cart'
 import Address from '@/views/Address'
+import OrderConfirm from '@/views/OrderConfirm'
+import OrderSuccess from '@/views/OrderSuccess'
 Vue.use(Router)
 Vue.use(VueResource)
 export default new Router({
@@ -54,6 +56,16 @@ export default new Router({
       path:'/Address',
       name: 'Address',
       component:Address
+    },
+    {
+      path:'/OrderConfirm',
+      name: 'OrderConfirm',
+      component:OrderConfirm
+    },
+    {
+      path:'/OrderSuccess',
+      name: 'OrderSuccess',
+      component:OrderSuccess
     }
     // {
     //   path:'/cart/:cartId',

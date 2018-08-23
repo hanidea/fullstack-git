@@ -184,6 +184,7 @@ export default {
       }).then((res)=>{
         if(res.data.status=="0"){
           this.mdShowCart = true;
+          this.$store.commit("updateCartCount",1);
           //alert("加入成功")
         }else{
           //alert("msg:"+res.data.msg)
