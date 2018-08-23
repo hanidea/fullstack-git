@@ -60,21 +60,21 @@
                 <div class="addr-list-wrap">
                     <div class="addr-list">
                     <ul>
-                        <li v-for="item in addressList">
+                        <li v-for="(item,index) in addressListFilter" v-bind:class="{'check':checkIndex==index}" @click="checkIndex=index;selectedAddrId=item.addressId">
                         <dl>
                             <dt>{{item.userName}}</dt>
                             <dd class="address">{{item.streetName}}</dd>
                             <dd class="tel">{{item.tel}}</dd>
                         </dl>
                         <div class="addr-opration addr-del">
-                            <a href="javascript:;" class="addr-del-btn">
+                            <a href="javascript:;" class="addr-del-btn" @click="delAddressConfirm(item.addressId)">
                             <svg class="icon icon-del"><use xlink:href="#icon-del"></use></svg>
                             </a>
                         </div>
                         <div class="addr-opration addr-set-default">
-                            <a href="javascript:;" class="addr-set-default-btn"><i>Set default</i></a>
+                            <a href="javascript:;" class="addr-set-default-btn" v-if="!item.isDefault" @click="setDefault(item.addressId)"><i>Set default</i></a>
                         </div>
-                        <div class="addr-opration addr-default">Default address</div>
+                        <div class="addr-opration addr-default" v-if="item.isDefault">Default address</div>
                         </li>
                         <li class="addr-new">
                         <div class="add-new-inner">
@@ -88,7 +88,7 @@
                     </div>
 
                     <div class="shipping-addr-more">
-                    <a class="addr-more-btn up-down-btn" href="javascript:;">
+                    <a class="addr-more-btn up-down-btn" href="javascript:;" @click="expand" v-bind:class="{'open':limit>3}">
                         more
                         <i class="i-up-down">
                         <i class="i-up-down-l"></i>
@@ -119,11 +119,21 @@
                     </div>
                 </div>
                 <div class="next-btn-wrap">
-                    <a class="btn btn--m btn--red">Next</a>
+                    <!-- <a class="btn btn--m btn--red">Next</a> -->
+                    <router-link class="btn btn--m btn--red" v-bind:to="{path:'orderConfirm',query:{'addressId':selectedAddrId}}">Next</router-link>
                 </div>
                 </div>
             </div>
         </div>
+        <modal :mdShow="isMdShow" @close="closeModal">
+        <p slot="message">
+          您是否确认要删除此地址?
+        </p>
+        <div slot="btnGroup">
+            <a class="btn btn--m" href="javascript:;" @click="delAddress">确认</a>
+            <a class="btn btn--m btn--red" href="javascript:;" @click="isMdShow=false">取消</a>
+        </div>
+        </modal>
         <nav-footer></nav-footer>
     </div>
 </template>
@@ -140,11 +150,21 @@
 export default {
     data(){
       return{
+        limit:3,
+        checkIndex:0,
+        selectedAddrId:'',
         addressList:[],
+        isMdShow:false,
+        addressId:''
       }
     },
     mounted(){
         this.init();
+    },
+    computed:{
+        addressListFilter(){
+            return this.addressList.slice(0,this.limit);
+        }
     },
     components:{
       NavHeader,
@@ -160,6 +180,43 @@ export default {
                 this.selectedAddrId = this.addressList[0].addressId;
             });
         },
+        expand(){
+              if(this.limit==3){
+                this.limit = this.addressList.length;
+              }else{
+                this.limit = 3;
+              }
+        },
+        setDefault(addressId){
+              axios.post("/users/setDefault",{
+                addressId:addressId
+              }).then((response)=>{
+                  let res = response.data;
+                  if(res.status=='0'){
+                     console.log("set default");
+                     this.init();
+                  }
+              })
+        },
+        closeModal(){
+            this.isMdShow = false;
+        },
+        delAddressConfirm(addressId){
+            this.isMdShow = true;
+            this.addressId = addressId;
+          },
+        delAddress(){
+            axios.post("/users/delAddress",{
+              addressId:this.addressId
+            }).then((response)=>{
+                let res = response.data;
+                if(res.status=="0"){
+                  console.log("del suc");
+                  this.isMdShow = false;
+                  this.init();
+                }
+            })
+          }
     }
 }
 </script>
