@@ -6,7 +6,7 @@ var Users = require('./../models/users');
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
-
+//登入接口
 router.post("/login",function(req,res,next) {
   var param = {
     userName:req.body.userName,
