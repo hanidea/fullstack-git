@@ -2,16 +2,15 @@
 	"description": "项目配置文件。",
 	"setting": {
 		"urlCheck": true,
-		"es6": false,
+		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
-	"compileType": "game",
+	"compileType": "miniprogram",
 	"libVersion": "1.9.93",
 	"appid": "touristappid",
 	"projectname": "mina",
-	"isGameTourist": true,
 	"condition": {
 		"search": {
 			"current": -1,

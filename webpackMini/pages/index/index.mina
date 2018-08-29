@@ -5,7 +5,7 @@ view.container
     text.userinfo-nickname {{userInfo.nickName}}
 </template>
 <script>
-const { regeneratorRuntime, util} = global
+/*const { regeneratorRuntime, util} = global
   //index.js
 //获取应用实例
 const app = getApp()
@@ -61,7 +61,45 @@ Page({
       hasUserInfo: true
     })
   }
-})
+})*/
+const { regeneratorRuntime, util } = global;
+  var app = getApp();
+
+  Page({
+    data: {
+      motto: 'Hello World!',
+      userInfo: {
+        nickName: 'James'
+      }
+    },
+    bindViewTap(){
+      wx.navigateTo({
+        url: '../logs/logs'
+      })
+    },
+    async onLoad(){
+      console.log('onLoad');
+      //var that = this;
+
+      //调用应用实例的方法获取全局数据
+      const setting = await wx.getSettingAsync();
+
+      if(!setting.authSetting['scope.userInfo']) {
+        wx.authorize({
+          scope: 'scope.userInfo',
+          async success(){
+            const userInfo = await wx.getUserInfoAsync();
+
+            //更新数据
+            that.setData({
+              userInfo: userInfo.userInfo
+            })
+          }
+        })
+      }
+
+    }
+  })
 </script>
 
 <style lang="sass">
