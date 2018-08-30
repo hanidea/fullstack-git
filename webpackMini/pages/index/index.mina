@@ -1,21 +1,22 @@
 <!--index.wxml-->
 <template lang='pug'>
 view.container
-  view.userInfo(bindtap='bindViewTap')
-    text.userinfo-nickname {{userInfo.nickName}}
+  view.userInfo
+    button(wx:if!='{{!hasUserInfo && canIUse}}',open-type='getUserInfo',bindgetuserinfo='getUserInfo') 获取头像昵称
+    block(wx:else)
+      image.userinfo-avatar(bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" mode="cover")
+      text.userinfo-nickname {{userInfo.nickName}}
+  view.usermotto
+    text.user-motto {{motto}}
 </template>
 <script>
-/*const { regeneratorRuntime, util} = global
-  //index.js
-//获取应用实例
+const { regeneratorRuntime, util} = global
 const app = getApp()
 
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {
-      nickname: 'James'
-    },
+    userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -25,7 +26,8 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  async onLoad() {
+    const userInfo = await wx.getUserInfo()
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -61,45 +63,8 @@ Page({
       hasUserInfo: true
     })
   }
-})*/
-const { regeneratorRuntime, util } = global;
-  var app = getApp();
+})
 
-  Page({
-    data: {
-      motto: 'Hello World!',
-      userInfo: {
-        nickName: 'James'
-      }
-    },
-    bindViewTap(){
-      wx.navigateTo({
-        url: '../logs/logs'
-      })
-    },
-    async onLoad(){
-      console.log('onLoad');
-      //var that = this;
-
-      //调用应用实例的方法获取全局数据
-      const setting = await wx.getSettingAsync();
-
-      if(!setting.authSetting['scope.userInfo']) {
-        wx.authorize({
-          scope: 'scope.userInfo',
-          async success(){
-            const userInfo = await wx.getUserInfoAsync();
-
-            //更新数据
-            that.setData({
-              userInfo: userInfo.userInfo
-            })
-          }
-        })
-      }
-
-    }
-  })
 </script>
 
 <style lang="sass">
@@ -114,6 +79,7 @@ const { regeneratorRuntime, util } = global;
   height: 128rpx
   margin: 20rpx
   border-radius: 50%
+  display:block
 
 .userinfo-nickname
   color: #aaa
