@@ -1,23 +1,6 @@
 <template>
     <div class="ebook">
-        <transition name="slide-down">
-        <div class="title-wrapper" v-show="ifTitleAndMenuShow">
-          <div class="left">
-            <span class="icon-back icon"></span>
-          </div>
-          <div class="right">
-            <div class="icon-wrapper">
-              <span class="icon-cart icon"></span>
-            </div>
-            <div class="icon-wrapper">
-              <span class="icon-person icon"></span>
-            </div>
-            <div class="icon-wrapper">
-              <span class="icon-more icon"></span>
-            </div>
-          </div>
-        </div>
-        </transition>
+        <title-bar :ifTitleAndMenuShow="ifTitleAndMenuShow"></title-bar>
         <div class="read-wrapper">
             <div id="read"></div>
             <div class="mask">
@@ -26,38 +9,92 @@
               <div class="right" @click="nextPage"></div>
             </div>
         </div>
-        <transition name="slide-up">
-        <div class="menu-wrapper" v-show="ifTitleAndMenuShow">
-          <div class="icon-wrapper">
-            <span class="icon-menu icon"></span>
-          </div>
-          <div class="icon-wrapper">
-            <span class="icon-progress icon"></span>
-          </div>
-          <div class="icon-wrapper">
-            <span class="icon-bright icon"></span>
-          </div>
-          <div class="icon-wrapper">
-            <span class="icon-a icon">A</span>
-          </div>
-        </div>
-        </transition>
+        <menu-bar :ifTitleAndMenuShow="ifTitleAndMenuShow" :fontSizeList='fontSizeList' :defaultFontSize='defaultFontSize' @setFontSize='setFontSize' :themeList="themeList" :defaultTheme="defaultTheme" @setTheme="setTheme"
+                  ref="menuBar"></menu-bar>
     </div>
 </template>
-
 <script>
+import TitleBar from '@/components/TitleBar'
+import MenuBar from '@/components/MenuBar'
 import Epub from 'epubjs'
 const DOWNLOAD_URL = '/static/2018_Book_AgileProcessesInSoftwareEngine.epub'
 global.ePub = Epub
 export default {
+  components: {
+    TitleBar,
+    MenuBar
+  },
   data () {
     return {
-      ifTitleAndMenuShow: false
+      ifTitleAndMenuShow: false,
+      fontSizeList: [
+        { fontSize: 12 },
+        { fontSize: 14 },
+        { fontSize: 16 },
+        { fontSize: 18 },
+        { fontSize: 20 },
+        { fontSize: 22 },
+        { fontSize: 24 }
+      ],
+      defaultFontSize: 16,
+      themeList: [
+        {
+          name: 'default',
+          style: {
+            body: {
+              'color': '#000', 'background': '#fff'
+            }
+          }
+        },
+        {
+          name: 'eye',
+          style: {
+            body: {
+              'color': '#000', 'background': '#ceeaba'
+            }
+          }
+        },
+        {
+          name: 'night',
+          style: {
+            body: {
+              'color': '#fff', 'background': '#000'
+            }
+          }
+        },
+        {
+          name: 'gold',
+          style: {
+            body: {
+              'color': '#000', 'background': 'rgb(241,236,226)'
+            }
+          }
+        }
+      ],
+      defaultTheme: 0
     }
   },
   methods: {
+    setTheme (index) {
+      this.themes.select(this.themeList[index].name)
+      this.defaultTheme = index
+    },
+    registerTheme () {
+      this.themeList.forEach(theme => {
+        this.themes.register(theme.name, theme.style)
+      })
+    },
+    setFontSize (fontSize) {
+      this.defaultFontSize = fontSize
+      if (this.themes) {
+        this.themes.fontSize(fontSize + 'px')
+      }
+    },
     toggleTitleAndMenu () {
       this.ifTitleAndMenuShow = !this.ifTitleAndMenuShow
+      if (!this.ifTitleAndMenuShow) {
+        this.$refs.menuBar.hideSetting()
+      }
     },
     prevPage () {
       // Rendition.prev
@@ -83,6 +120,14 @@ export default {
       })
       // 通过Rendition.display渲染电子书
       this.rendition.display()
+      // 获取Theme对象
+      this.themes = this.rendition.themes
+      // 设置默认字体
+      this.setFontSize(this.defaultFontSize)
+      // this.themes.register(name, styles)
+      // this.themes.select(name)
+      this.registerTheme()
+      this.setTheme(this.defaultTheme)
     }
   },
   mounted () {
@@ -95,33 +140,6 @@ export default {
     @import 'assets/styles/global';
     .ebook {
       position: relative;
-      .title-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 101;
-        display: flex;
-        width: 100%;
-        height: px2rem(48);
-        background: white;
-        box-shadow: 0 px2rem(8) px2rem(8) rgba(0, 0, 0, .15);
-        .left {
-          flex: 0 0 px2rem(60);
-          @include center;
-        }
-        .right {
-          flex: 1;
-          display: flex;
-          justify-content: flex-end;
-          .icon-wrapper {
-            flex: 0 0 px2rem(40);
-            @include center;
-            .icon-cart{
-              font-size: px2rem(22);
-            }
-          }
-        }
-      }
       .read-wrapper {
         .mask {
           position:absolute;
@@ -140,27 +158,6 @@ export default {
           }
           .right {
              flex: 0 0 px2rem(100);
-          }
-        }
-      }
-      .menu-wrapper {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        z-index: 101;
-        display: flex;
-        width: 100%;
-        height: px2rem(48);
-        background: white;
-        box-shadow: 0 px2rem(-8) px2rem(8) rgba(0, 0, 0, .15);
-        .icon-wrapper {
-          flex: 1;
-          @include center;
-          .icon-progress{
-            font-size: px2rem(28);
-          }
-          .icon-bright{
-            font-size: px2rem(24);
           }
         }
       }
