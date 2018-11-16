@@ -31,14 +31,32 @@ class Application {
         this.context = context
         this.request = request
         this.response = response
+        this.middlewares = []
     }
     use(callback){
-        this.callback = callback
+        this.middlewares.push(callback)
+        // this.callback = callback
+    }
+    compose (middlewares){
+        return function(context){
+            return dispatch(0)
+            function dispatch(i){
+                let fn = middlewares[i]
+                if(!fn){
+                    return Promise.resolve()
+                }
+                return Promise.resolve(fn(context,function next(){
+                    return dispatch(i+1)
+                }))
+            }
+        }
     }
     listen(...args){
-        const server = http.createServer(async(req,res)=>{
+        const server = http.createServer(async(req,res)=> {
             let ctx = this.createCtx(req,res)
-            await this.callback(ctx)
+            const fn = this.compose(this.middlewares)
+            await fn(ctx)
+            // await this.callback(ctx)
             ctx.res.end(ctx.body)
             // this.callback(req,res)
         })
