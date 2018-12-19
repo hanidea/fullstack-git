@@ -11,10 +11,13 @@
   "author": "James",
   "license": "ISC",
   "devDependencies": {
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "lodash": "^4.17.11"
+    "css-loader": "^2.0.1",
+    "lodash": "^4.17.11",
+    "style-loader": "^0.23.1"
   }
 }
