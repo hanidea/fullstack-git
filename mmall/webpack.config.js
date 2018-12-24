@@ -2,11 +2,22 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-12-19 16:44:04
+ * @Last Modified time: 2018-12-24 13:44:54
  */
 
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+//获取html-webpack-plugin参数方法
+var getHtmlConfig = function(name){
+  return {
+    template:'./src/view/'+ name + '.html',
+    filename:'view/' + name + '.html',
+    inject:true,
+    hash:true,
+    chunks:['common',name]
+  }
+}
 var config = {
   mode: 'production',
   entry: {
@@ -33,7 +44,9 @@ var config = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("./css/[name].css") //默认其实目录问打包后的入口文件路径，所以需要../
+    new ExtractTextPlugin("./css/[name].css"), //默认其实目录问打包后的入口文件路径，所以需要../
+    new HtmlWebpackPlugin(getHtmlConfig('index')),
+    new HtmlWebpackPlugin(getHtmlConfig('login'))
   ],
   optimization: {
     splitChunks: {
