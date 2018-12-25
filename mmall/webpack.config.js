@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-12-24 13:44:54
+ * @Last Modified time: 2018-12-25 15:44:10
  */
 
 const path = require('path');
@@ -39,8 +39,25 @@ var config = {
             // test 表示测试什么文件类型
             test:/\.css$/,
             // 使用 'style-loader','css-loader'
-            use:ExtractTextPlugin.extract({fallback:'style-loader',use:'css-loader'})
-        }
+            use:ExtractTextPlugin.extract({fallback:'style-loader',use:'css-loader'}),
+            
+        },
+        {
+          // test 表示测试什么文件类型
+          test:/\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,
+          // 使用 'style-loader','css-loader'
+          use:'url-loader?limit=100&name=resource/[name].[ext]',
+          
+        },
+        // {
+        //     test: /\.html$/,
+        //     use: [{
+        //       loader: 'html-loader',
+        //       // options: {
+        //       // minimize: true
+        //       // }
+        //     }],
+        // }
     ]
   },
   plugins: [
