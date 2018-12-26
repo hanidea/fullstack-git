@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-12-25 15:44:10
+ * @Last Modified time: 2018-12-26 13:17:32
  */
 
 const path = require('path');
@@ -26,9 +26,15 @@ var config = {
     'login':['./src/page/login/index.js']
   },
   output: {
+    path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js',
-    path: path.resolve(__dirname, 'dist')
   },
+  // devServer: {
+  //   contentBase: path.join(__dirname, "dist"),
+  //   publicPath: '/dist',
+  //   compress: true,
+  //   port: 9000
+  // },
   externals:{
     'jquery': 'window.jQuery'
   },
