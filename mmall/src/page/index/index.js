@@ -2,10 +2,11 @@
  * @Author: James 
  * @Date: 2018-12-18 15:47:41 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-12-26 13:43:30
+ * @Last Modified time: 2018-12-27 10:58:24
  */
-// require('../../js/module.js');
-// require('./index.css');
-var $$ = require('jquery');
-console.log('hello index');
-$$('body').html('hello index');
+
+require('./index.css');
+require('../../js/module.js');
+// console.log('hello index');
+// $('body').html('hello index');
+alert('test one');

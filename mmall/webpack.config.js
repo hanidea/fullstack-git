@@ -2,12 +2,13 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-12-26 13:17:32
+ * @Last Modified time: 2018-12-27 14:28:28
  */
 
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+// const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
 //获取html-webpack-plugin参数方法
 var getHtmlConfig = function(name){
   return {
@@ -31,8 +32,8 @@ var config = {
   },
   // devServer: {
   //   contentBase: path.join(__dirname, "dist"),
-  //   publicPath: '/dist',
-  //   compress: true,
+  //   hot : true,
+  //   inline : true,
   //   port: 9000
   // },
   externals:{
@@ -45,14 +46,28 @@ var config = {
             // test 表示测试什么文件类型
             test:/\.css$/,
             // 使用 'style-loader','css-loader'
-            use:ExtractTextPlugin.extract({fallback:'style-loader',use:'css-loader'}),
-            
+            // use:ExtractTextPlugin.extract({fallback:'style-loader',use:'css-loader'}),
+            use: [
+              miniCssExtractPlugin.loader,
+              {
+                  loader: 'css-loader'
+              }
+            ]    
         },
         {
           // test 表示测试什么文件类型
           test:/\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,
           // 使用 'style-loader','css-loader'
-          use:'url-loader?limit=100&name=resource/[name].[ext]',
+          // use:'url-loader?limit=100&name=resource/[name].[ext]',
+          use: [{
+            loader: "url-loader",
+            options:{
+              limit:100,
+              name: "[name].[ext]",
+              publicPath: "../resource/",
+              outputPath: "resource/"
+            }
+          }]
           
         },
         // {
@@ -67,9 +82,13 @@ var config = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("./css/[name].css"), //默认其实目录问打包后的入口文件路径，所以需要../
+    new miniCssExtractPlugin({
+      filename: "./css/[name].css",
+      chunkFilename: "[id].css"
+    }),
     new HtmlWebpackPlugin(getHtmlConfig('index')),
-    new HtmlWebpackPlugin(getHtmlConfig('login'))
+    new HtmlWebpackPlugin(getHtmlConfig('login')),
+    // new ExtractTextPlugin("./css/[name].css"), //默认其实目录问打包后的入口文件路径，所以需要../ 
   ],
   optimization: {
     splitChunks: {
@@ -103,6 +122,8 @@ var config = {
         }
     }
 },
+
+  
 };
 
 module.exports = config;
