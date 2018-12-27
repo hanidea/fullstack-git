@@ -1,11 +1,13 @@
 /*
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
- * @Last Modified by: James
- * @Last Modified time: 2018-12-27 14:57:47
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2018-12-28 00:28:43
  */
 
 const path = require('path');
+//const webpack=require('webpack');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
 // const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -16,15 +18,16 @@ var getHtmlConfig = function(name){
     filename:'view/' + name + '.html',
     inject:true,
     hash:true,
-    chunks:['common',name]
+    chunks:[name,'common'],
+    // chunksSortMode: 'manual'
   }
 }
 var config = {
   mode: 'production',
   entry: {
-    'common':['./src/js/common.js'],
     'index':['./src/page/index/index.js'],
-    'login':['./src/page/login/index.js']
+    'login':['./src/page/login/index.js'],
+    'common':['./src/js/common.js']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -82,12 +85,14 @@ var config = {
     ]
   },
   plugins: [
+    //new webpack.HotModuleReplacementPlugin(),
+    // new CleanWebpackPlugin('dist'),
+    new HtmlWebpackPlugin(getHtmlConfig('index')),
+    new HtmlWebpackPlugin(getHtmlConfig('login')),
     new miniCssExtractPlugin({
       filename: "./css/[name].css",
       chunkFilename: "[id].css"
     }),
-    new HtmlWebpackPlugin(getHtmlConfig('index')),
-    new HtmlWebpackPlugin(getHtmlConfig('login')),
     // new ExtractTextPlugin("./css/[name].css"), //默认其实目录问打包后的入口文件路径，所以需要../ 
   ],
   optimization: {
