@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-12-28 00:28:43
+ * @Last Modified time: 2019-01-02 14:31:41
  */
 
 const path = require('path');
@@ -83,6 +83,14 @@ var config = {
         //     }],
         // }
     ]
+  },
+  resolve:{
+    alias : {
+      util    : __dirname + '/src/util',
+      page    : __dirname + '/src/page',
+      service : __dirname + '/src/service',
+      image   : __dirname + '/src/image',
+    }
   },
   plugins: [
     //new webpack.HotModuleReplacementPlugin(),
