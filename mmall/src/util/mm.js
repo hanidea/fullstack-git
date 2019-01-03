@@ -2,9 +2,11 @@
  * @Author: James 
  * @Date: 2019-01-02 13:21:37 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-02 14:25:29
+ * @Last Modified time: 2019-01-03 14:50:24
  */
-
+var conf = {
+    serverHost : ''
+};
 var _mm = {
     // 网络请求
     request : function(param){
@@ -33,6 +35,17 @@ var _mm = {
             }
 
         });
+    },
+    //获取服务器地址
+    getServerUrl : function(path){
+        return conf.serverHost  + path;
+    },
+    //获取url参数
+    getUrlParam : function(name){
+        // happymmall.com/product/list?keyword=xxx&page=1
+        var reg    = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+        var result = window.location.search.substr(1).match(reg);
+        return result ? decodeURIComponent(result[2]) : null;
     },
     // 统一登录处理
     doLogin : function(){
