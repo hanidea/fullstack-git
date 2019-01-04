@@ -1,9 +1,11 @@
 /*
  * @Author: James 
  * @Date: 2019-01-02 13:21:37 
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-03 14:50:24
+ * @Last Modified by: James
+ * @Last Modified time: 2019-01-04 22:15:39
  */
+// var Hogan = require ('hogan');
+var Hogan = require('hogan.js');
 var conf = {
     serverHost : ''
 };
@@ -46,6 +48,12 @@ var _mm = {
         var reg    = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
         var result = window.location.search.substr(1).match(reg);
         return result ? decodeURIComponent(result[2]) : null;
+    },
+    // 渲染html模版
+    renderHtml : function(htmlTemplate,data){
+        var template = Hogan.compile(htmlTemplate);
+            result =  template.render(data);
+        return result;
     },
     // 统一登录处理
     doLogin : function(){
