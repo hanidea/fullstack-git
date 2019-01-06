@@ -2,13 +2,13 @@
  * @Author: James 
  * @Date: 2018-12-18 15:47:41 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-05 00:02:35
+ * @Last Modified time: 2019-01-06 11:34:09
  */
 
 var _mm = require('util/mm.js');
 var html = '<div>{{data}}</div>';
 var data = {
-    data: 'test'
+    data: 'James'
 }
 console.log(_mm.renderHtml(html,data));
 // console.log(_mm.getUrlParam('test'));
