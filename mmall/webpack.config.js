@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-04 23:58:05
+ * @Last Modified time: 2019-01-07 14:15:26
  */
 
 const path = require('path');
@@ -27,7 +27,7 @@ var config = {
   entry: {
     'index':['./src/page/index/index.js'],
     'login':['./src/page/login/index.js'],
-    'common':['./src/js/common.js']
+    'common':['./src/page/common/index.js']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -86,6 +86,7 @@ var config = {
   },
   resolve:{
     alias : {
+      node_modules : __dirname + '/node_modules',
       util    : __dirname + '/src/util',
       page    : __dirname + '/src/page',
       service : __dirname + '/src/service',
