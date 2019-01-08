@@ -2,9 +2,9 @@
  * @Author: James 
  * @Date: 2018-12-18 15:47:41 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-08 14:45:38
+ * @Last Modified time: 2019-01-08 15:00:21
  */
-require('page/common/nav/index.js');
+require('page/common/nav-simple/index.js');
 var _mm = require('util/mm.js');
 
 // var html = '<div>{{data}}</div>';

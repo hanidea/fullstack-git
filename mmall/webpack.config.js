@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-08 13:30:20
+ * @Last Modified time: 2019-01-08 14:59:17
  */
 
 const path = require('path');
@@ -22,8 +22,12 @@ var getHtmlConfig = function(name){
     // chunksSortMode: 'manual'
   }
 }
+
 var config = {
   mode: 'production',
+  performance: {
+    hints:false
+  },    
   entry: {
     'index':['./src/page/index/index.js'],
     'login':['./src/page/login/index.js'],
@@ -104,18 +108,18 @@ var config = {
     }),
     // new ExtractTextPlugin("./css/[name].css"), //默认其实目录问打包后的入口文件路径，所以需要../ 
   ],
-  optimization:{
-    runtimeChunk: false,
-    splitChunks: {
-        cacheGroups: {
-            common: {
-                name: "common",
-                chunks: "all",
-                minChunks: 2
-            }
-        }
-    }
-  },
+  // optimization:{
+  //   runtimeChunk: false,
+  //   splitChunks: {
+  //       cacheGroups: {
+  //           common: {
+  //               name: "common",
+  //               chunks: "all",
+  //               minChunks: 2
+  //           }
+  //       }
+  //   }
+  // },
   // optimization: {
   //   splitChunks: {
   //      chunks: 'async', 
