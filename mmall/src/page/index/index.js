@@ -2,15 +2,16 @@
  * @Author: James 
  * @Date: 2018-12-18 15:47:41 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-06 11:34:09
+ * @Last Modified time: 2019-01-08 14:45:38
  */
-
+require('page/common/nav/index.js');
 var _mm = require('util/mm.js');
-var html = '<div>{{data}}</div>';
-var data = {
-    data: 'James'
-}
-console.log(_mm.renderHtml(html,data));
+
+// var html = '<div>{{data}}</div>';
+// var data = {
+//     data: 'James'
+// }
+// console.log(_mm.renderHtml(html,data));
 // console.log(_mm.getUrlParam('test'));
 // _mm.request({
 //     url: '/product/list.do?keyword=1',

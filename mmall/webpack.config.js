@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-07 14:15:26
+ * @Last Modified time: 2019-01-08 13:30:20
  */
 
 const path = require('path');
@@ -18,7 +18,7 @@ var getHtmlConfig = function(name){
     filename:'view/' + name + '.html',
     inject:true,
     hash:true,
-    chunks:[name,'common'],
+    chunks:['common',name],
     // chunksSortMode: 'manual'
   }
 }
@@ -59,7 +59,7 @@ var config = {
         },
         {
           // test 表示测试什么文件类型
-          test:/\.(gif|png|jpg|woff|svg|eot|ttf)\??.*$/,
+          test:/\.(gif|png|jpg|woff|woff2|svg|eot|ttf)\??.*$/,
           // 使用 'style-loader','css-loader'
           // use:'url-loader?limit=100&name=resource/[name].[ext]',
           use: [{
@@ -104,6 +104,18 @@ var config = {
     }),
     // new ExtractTextPlugin("./css/[name].css"), //默认其实目录问打包后的入口文件路径，所以需要../ 
   ],
+  optimization:{
+    runtimeChunk: false,
+    splitChunks: {
+        cacheGroups: {
+            common: {
+                name: "common",
+                chunks: "all",
+                minChunks: 2
+            }
+        }
+    }
+  },
   // optimization: {
   //   splitChunks: {
   //      chunks: 'async', 
@@ -136,18 +148,7 @@ var config = {
   //       }
   //   }
   //  },
-      optimization:{
-        runtimeChunk: false,
-        splitChunks: {
-            cacheGroups: {
-                common: {
-                    name: "common",
-                    chunks: "all",
-                    minChunks: 2
-                }
-            }
-        }
-    },
+
 };
 
 module.exports = config;
