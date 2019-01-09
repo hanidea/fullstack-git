@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-08 15:19:34
+ * @Last Modified time: 2019-01-09 15:36:45
  */
 
 const path = require('path');
@@ -76,6 +76,11 @@ var config = {
             }
           }]
           
+        },
+        {
+          // test 表示测试什么文件类型
+          test:/\.string$/,
+          loader:'html-loader'
         },
         // {
         //     test: /\.html$/,
