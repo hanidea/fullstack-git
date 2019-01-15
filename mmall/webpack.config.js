@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-10 10:49:14
+ * @Last Modified time: 2019-01-15 13:56:06
  */
 
 const path = require('path');
@@ -31,7 +31,7 @@ var config = {
   },    
   entry: {
     'index':['./src/page/index/index.js'],
-    'login':['./src/page/login/index.js'],
+    'user-login':['./src/page/user-login/index.js'],
     'common':['./src/page/common/index.js'],
     'result':['./src/page/result/index.js'],
   },
@@ -108,7 +108,7 @@ var config = {
     new webpack.HotModuleReplacementPlugin(),
     // new CleanWebpackPlugin('dist'),
     new HtmlWebpackPlugin(getHtmlConfig('index','首页')),
-    new HtmlWebpackPlugin(getHtmlConfig('login','用户登录')),
+    new HtmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),
     new HtmlWebpackPlugin(getHtmlConfig('result','操作结果')),
     new miniCssExtractPlugin({
       filename: "./css/[name].css",
