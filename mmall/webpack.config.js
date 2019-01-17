@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-15 13:56:06
+ * @Last Modified time: 2019-01-17 10:09:05
  */
 
 const path = require('path');
@@ -109,6 +109,7 @@ var config = {
     // new CleanWebpackPlugin('dist'),
     new HtmlWebpackPlugin(getHtmlConfig('index','首页')),
     new HtmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),
+    new HtmlWebpackPlugin(getHtmlConfig('user-register','用户注册')),
     new HtmlWebpackPlugin(getHtmlConfig('result','操作结果')),
     new miniCssExtractPlugin({
       filename: "./css/[name].css",
