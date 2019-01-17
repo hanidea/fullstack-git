@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-17 10:09:05
+ * @Last Modified time: 2019-01-17 13:29:21
  */
 
 const path = require('path');
@@ -32,6 +32,7 @@ var config = {
   entry: {
     'index':['./src/page/index/index.js'],
     'user-login':['./src/page/user-login/index.js'],
+    'user-register':['./src/page/user-register/index.js'],
     'common':['./src/page/common/index.js'],
     'result':['./src/page/result/index.js'],
   },
