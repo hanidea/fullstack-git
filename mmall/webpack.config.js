@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-17 13:29:21
+ * @Last Modified time: 2019-01-18 13:14:19
  */
 
 const path = require('path');
@@ -33,6 +33,7 @@ var config = {
     'index':['./src/page/index/index.js'],
     'user-login':['./src/page/user-login/index.js'],
     'user-register':['./src/page/user-register/index.js'],
+    'user-pass-reset':['./src/page/user-pass-reset/index.js'],
     'common':['./src/page/common/index.js'],
     'result':['./src/page/result/index.js'],
   },
@@ -111,6 +112,7 @@ var config = {
     new HtmlWebpackPlugin(getHtmlConfig('index','首页')),
     new HtmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),
     new HtmlWebpackPlugin(getHtmlConfig('user-register','用户注册')),
+    new HtmlWebpackPlugin(getHtmlConfig('user-pass-reset','找回密码')),
     new HtmlWebpackPlugin(getHtmlConfig('result','操作结果')),
     new miniCssExtractPlugin({
       filename: "./css/[name].css",
