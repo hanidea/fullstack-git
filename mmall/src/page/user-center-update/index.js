@@ -41,7 +41,7 @@ var page = {
                 });
             }
             else{
-                _mm.errorTips(validateResult.Msg);
+                _mm.errorTips(validateResult.msg);
             }
         })
     },
