@@ -21,7 +21,28 @@ var page = {
     },
     bindEvent : function(){
         var _this = this;
-        // 商品的选择 / 取消选择
+        // 地址的选择
+        $(document).on('click','.address-item',function(){
+            $(this).addClass('active').siblings('.address-item').removeClass('active');
+            _this.data.selectedAddressId = $(this).data('id');
+        });
+        // 订单提交
+        $(document).on('click','.order-submit',function(){
+            var shippingId = _this.data.selectedAddressId;
+            if(shippingId){
+                _order.createOrder({
+                    shippingId : shippingId
+                }, function(res){
+                    window.location.href = './payment.html?orderNumber=' + res.orderNo;
+                }, function(errMsg){
+                    _mm.errorTips(errMsg)
+                });
+            }else{
+                _mm.errorTips('请选择地址后再提交');
+            }
+
+        })
+
     },
     // 加载地址列表
     loadAddressList : function(){
