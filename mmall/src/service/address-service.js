@@ -14,5 +14,14 @@ var _address = {
             error   : reject
         });
     },
+    //新建收件人
+    save : function(addressInfo, resolve, reject){
+        _mm.request({
+            url     : _mm.getServerUrl('/shipping/add.do'),
+            data    : addressInfo,
+            success : resolve,
+            error   : reject
+        });
+    },
 }
 module.exports = _address;
