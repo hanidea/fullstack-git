@@ -1,8 +1,8 @@
 /*
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
- * @Last Modified by: James
- * @Last Modified time: 2019-02-03 10:05:50
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2019-02-18 09:37:43
  */
 
 const path = require('path');
@@ -52,7 +52,8 @@ var config = {
     contentBase: path.join(__dirname, "dist"),
     hot : true,
     inline : true,
-    port: 9000
+    port: 9000,
+    disableHostCheck: true
   },
   externals:{
     'jquery': 'window.jQuery'
