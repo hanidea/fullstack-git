@@ -36,12 +36,13 @@ var addressModal = {
                 })
             }
             //更新收件人，且验证通过
-            else if(!isUpdate && receiverInfo.status){
+            else if(isUpdate && receiverInfo.status){
 
             }
             //验证不通过
             else{
                 _mm.errorTips(receiverInfo.errMsg || '好像哪里不对了～');
+                return false;
             }
         });
         //modal内容区域不关闭，冒泡到close处理
