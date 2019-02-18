@@ -76,9 +76,9 @@ var addressModal = {
     //获取表单里收件人信息，并做表单的验证
     getReceiverInfo : function(){
         var receiverInfo = {},
-        result ={
-           status : false
-        };
+            result = {
+                status : false
+            };
         receiverInfo.receiverName     = $.trim(this.$modalWrap.find('#receiver-name').val());
         receiverInfo.receiverProvince = this.$modalWrap.find('#receiver-province').val();
         receiverInfo.receiverCity     = this.$modalWrap.find('#receiver-city').val();
