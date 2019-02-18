@@ -28,11 +28,11 @@ var addressModal = {
             //使用新地址,且验证通过
             if(!isUpdate && receiverInfo.status){
                 _address.save(receiverInfo.data,function(res){
-                    //_mm.successTips('地址添加成功');
-                    //_this.hide();
-                    //typeof _this.option.onSuccess === 'function' && _this.option.onSuccess(res);
+                    _mm.successTips('地址添加成功');
+                    _this.hide();
+                    typeof _this.option.onSuccess === 'function' && _this.option.onSuccess(res);
                 },function(errMsg){
-                    //_mm.errorTips(errMsg);
+                    _mm.errorTips(errMsg);
                 })
             }
             //更新收件人，且验证通过
@@ -41,7 +41,7 @@ var addressModal = {
             }
             //验证不通过
             else{
-                _mm.errorTips(receiverInfo.errMsg);
+                _mm.errorTips(receiverInfo.errMsg || '好像哪里不对了～');
             }
         });
         //modal内容区域不关闭，冒泡到close处理
@@ -92,7 +92,7 @@ var addressModal = {
             result.errMsg = '请选择收件人所在省份';
         }
         else if(!receiverInfo.receiverCity){
-            result.errMsg = '请选择收件人所在省份';
+            result.errMsg = '请选择收件人所在城市';
         }
         else if(!receiverInfo.receiverAddress){
             result.errMsg = '请选择收件人详细地址';
@@ -116,8 +116,8 @@ var addressModal = {
         return html;
     },
     //关闭弹窗
-    // hide : function(){
-    //     this.$modalWrap.empty();
-    // }
+    hide : function(){
+        this.$modalWrap.empty();
+    }
 };
 module.exports = addressModal;
