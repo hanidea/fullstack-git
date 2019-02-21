@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-02-21 10:03:12
+ * @Last Modified time: 2019-02-21 15:17:45
  */
 
 const path = require('path');
@@ -36,6 +36,7 @@ var config = {
     'cart': ['./src/page/cart/index.js'],
     'order-confirm': ['./src/page/order-confirm/index.js'],
     'order-list': ['./src/page/order-list/index.js'],
+    'order-detail': ['./src/page/order-detail/index.js'],
     'user-login':['./src/page/user-login/index.js'],
     'user-register':['./src/page/user-register/index.js'],
     'user-center':['./src/page/user-center/index.js'],
@@ -124,6 +125,7 @@ var config = {
     new HtmlWebpackPlugin(getHtmlConfig('cart', '购物车')),
     new HtmlWebpackPlugin(getHtmlConfig('order-confirm', '订单确认')),
     new HtmlWebpackPlugin(getHtmlConfig('order-list', '订单列表')),
+    new HtmlWebpackPlugin(getHtmlConfig('order-detail', '订单详情')),
     new HtmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),
     new HtmlWebpackPlugin(getHtmlConfig('user-register','用户注册')),
     new HtmlWebpackPlugin(getHtmlConfig('user-center','个人中心')),
