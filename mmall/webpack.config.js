@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-02-18 09:37:43
+ * @Last Modified time: 2019-02-21 10:03:12
  */
 
 const path = require('path');
@@ -35,6 +35,7 @@ var config = {
     'detail': ['./src/page/detail/index.js'],
     'cart': ['./src/page/cart/index.js'],
     'order-confirm': ['./src/page/order-confirm/index.js'],
+    'order-list': ['./src/page/order-list/index.js'],
     'user-login':['./src/page/user-login/index.js'],
     'user-register':['./src/page/user-register/index.js'],
     'user-center':['./src/page/user-center/index.js'],
@@ -118,10 +119,11 @@ var config = {
     new webpack.HotModuleReplacementPlugin(),
     // new CleanWebpackPlugin('dist'),
     new HtmlWebpackPlugin(getHtmlConfig('index','首页')),
-    new HtmlWebpackPlugin(getHtmlConfig('list', '商品列表页')),
-    new HtmlWebpackPlugin(getHtmlConfig('detail', '商品详情页')),
+    new HtmlWebpackPlugin(getHtmlConfig('list', '商品列表')),
+    new HtmlWebpackPlugin(getHtmlConfig('detail', '商品详情')),
     new HtmlWebpackPlugin(getHtmlConfig('cart', '购物车')),
-    new HtmlWebpackPlugin(getHtmlConfig('order-confirm', '订单确认页')),
+    new HtmlWebpackPlugin(getHtmlConfig('order-confirm', '订单确认')),
+    new HtmlWebpackPlugin(getHtmlConfig('order-list', '订单列表')),
     new HtmlWebpackPlugin(getHtmlConfig('user-login','用户登录')),
     new HtmlWebpackPlugin(getHtmlConfig('user-register','用户注册')),
     new HtmlWebpackPlugin(getHtmlConfig('user-center','个人中心')),
