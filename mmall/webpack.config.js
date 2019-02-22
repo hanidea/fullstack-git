@@ -2,7 +2,7 @@
  * @Author: James 
  * @Date: 2018-12-18 15:17:08 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-02-22 10:20:01
+ * @Last Modified time: 2019-02-22 17:10:29
  */
 
 const path = require('path');
@@ -16,6 +16,7 @@ var getHtmlConfig = function(name,title){
   return {
     template:'./src/view/'+ name + '.html',
     filename:'view/' + name + '.html',
+    favicon :'./favicon.ico',
     title:title,
     inject:true,
     hash:true,
@@ -46,9 +47,12 @@ var config = {
     'user-pass-reset':['./src/page/user-pass-reset/index.js'],
     'common':['./src/page/common/index.js'],
     'result':['./src/page/result/index.js'],
+    'about':['./src/page/about/index.js'],
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '//s.happymmall.com/mmall-fe/dist/',
+    //publicPath: '/dist/',
     filename: 'js/[name].js',
   },
   devServer: {
@@ -86,7 +90,7 @@ var config = {
             options:{
               limit:100,
               name: "[name].[ext]",
-              publicPath: "../resource/",
+              //publicPath: "../resource/",
               outputPath: "resource/"
             }
           }]
@@ -135,8 +139,10 @@ var config = {
     new HtmlWebpackPlugin(getHtmlConfig('user-pass-update','修改密码')),
     new HtmlWebpackPlugin(getHtmlConfig('user-pass-reset','找回密码')),
     new HtmlWebpackPlugin(getHtmlConfig('result','操作结果')),
+    new HtmlWebpackPlugin(getHtmlConfig('about','关于我们')),
     new miniCssExtractPlugin({
-      filename: "./css/[name].css",
+      filename: "css/[name].css",
+      //filename: "./css/[name].css",
       chunkFilename: "[id].css"
     }),
     // new ExtractTextPlugin("./css/[name].css"), //默认其实目录问打包后的入口文件路径，所以需要../ 
