@@ -5,19 +5,14 @@
                 <el-col :span="3" class="left"><img src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt="美团"/></el-col>
                 <el-col :span="15" class="center">
                     <div class="wrapper">
-                        <el-input v-model="search" placeholder="搜索商家或地点" @focus="focus" @blur="blur"/>
+                        <el-input v-model="search" placeholder="搜索商家或地点" @focus="focus" @blur="blur" @input="input"/>
                         <button class="el-button el-button--primary"><i class="el-icon-search"></i></button>
                         <dl class="hotPlace" v-if="isHotPlace">
                             <dt>热门搜索</dt>
-                            <dd>火锅</dd>
-                            <dd>火锅</dd>
-                            <dd>火锅</dd>
+                            <dd v-for="(item,index) in hotPlace" :key="index">{{item}}</dd>
                         </dl>
                         <dl class="searchList" v-if="isSearchList">
-                            <dd>麻辣烫</dd>
-                            <dd>麻辣烫</dd>
-                            <dd>麻辣烫</dd>
-                            <dd>麻辣烫</dd>
+                             <dd v-for="(item,index) in searchList" :key="index">{{item}}</dd>
                         </dl>
                         
                     </div>
@@ -61,8 +56,8 @@ export default {
         return{
             search:'',
             isFocus:false,
-            hotPlace: [], // 热门搜索数据
-            searchList: [] // 搜索数据
+            hotPlace: ['火锅','火锅','火锅'], // 热门搜索数据
+            searchList: ['故宫','故宫','故宫'] // 搜索数据
         }
     },
     computed:{
@@ -81,6 +76,9 @@ export default {
             setTimeout(()=>{
             this.isFocus = false
           }, 200)
+        },
+        input:function(){
+            console.log('input');
         }
     }
 }
