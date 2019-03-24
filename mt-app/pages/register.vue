@@ -77,6 +77,7 @@
     </div>
 </template>
 <script>
+import CryptoJs from "crypto-js";
 export default {
     	data(){
   		return {

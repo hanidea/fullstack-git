@@ -151,8 +151,8 @@ router.post("/verify", async(ctx, next)=>{
   let mailOptions = {
     from: `认证邮件<${Email.smtp.user}>`,
     to: ko.email,
-    subject: "《慕课网高仿美团网全栈实战》注册码",
-    html: `您在《慕课网高仿美团网全栈实战》课程中注册，您的邀请码是${ko.code}`
+    subject: "瀚涵网络 用户注册码",
+    html: `您在 瀚涵网络 中注册，您的邀请码是${ko.code}`
   }
   await transporter.sendMail(mailOptions, (err, info)=>{
     if(err) {

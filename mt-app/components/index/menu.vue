@@ -2,7 +2,7 @@
     <div class="m-menu">
         <dl class="nav" @mouseleave="mouseleave">
             <dt>全部分类</dt>
-            <dd v-for="item,idx in menu" :key="idx" @mouseenter="enter"><i :class="item.type"/>{{item.name}}<span class="arrow"/></dd>
+            <dd v-for="item,idx in $store.state.home.menu" :key="idx" @mouseenter="enter"><i :class="item.type"/>{{item.name}}<span class="arrow"/></dd>
         </dl>
         <div class="detail" v-if="kind" @mouseenter="sover" @mouseleave="sout">
             <template v-for="(item,idx) in curdetail.child">
@@ -43,7 +43,7 @@ export default {
     },
     computed:{
         curdetail:function(){
-            return this.menu.filter((item)=> item.type===this.kind)[0]
+            return this.$store.state.home.menu.filter((item)=> item.type===this.kind)[0]
         }
     },
     methods:{
