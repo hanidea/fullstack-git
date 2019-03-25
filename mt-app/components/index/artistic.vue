@@ -66,7 +66,7 @@ export default {
     let {status, data:{count, pois}} = await this.$axios.get('/search/resultsByKeywords', {
       params: {
         keyword: '景点',
-        //city: this.$store.state.geo.position.city
+        city: this.$store.state.geo.position.city
       }
     })
     if(status === 200 && count > 0) {
@@ -98,7 +98,7 @@ export default {
         let {status, data:{count, pois}} = await self.$axios.get('/search/resultsByKeywords', {
           params: {
             keyword,
-            //city: this.$store.state.geo.position.city
+            city: this.$store.state.geo.position.city
           }
         })
         if(status === 200 && count > 0) {
