@@ -1,78 +1,135 @@
 <template>
   <div class="container">
     个人中心page
-    <!-- <div class="userinfo" @click='login'>
+    <div class="userinfo" open-type="getUserInfo" @getuserinfo="doLogin">
       <img :src="userinfo.avatarUrl" alt="">
       <p>{{userinfo.nickName}}</p>
     </div>
-    <YearProgress></YearProgress>
+    <!-- <YearProgress></YearProgress> -->
 
-    <button v-if='userinfo.openId' @click='scanBook' class='btn'>添加图书</button> -->
+    <!-- <button v-if='userinfo.openId' @click='scanBook' class='btn'>添加图书</button> -->
+    <div>
+    <button open-type="getUserInfo" lang="zh_CN" @getuserinfo="doLogin">获取用户信息</button>
+    </div>
   </div>
 </template>
 <script>
+import {showSuccess} from '@/util'
+import qcloud from 'wafer2-client-sdk'
+import config from '@/config'
+export default {
+  data () {
+  return {
+    userinfo: {
+      avatarUrl: '/static/img/unlogin.png',
+      nickName: '点击登录'
+    }
+  }
+  },
+  methods: {
+    doLogin: function (e) {
+      let user = wx.getStorageSync('userinfo')
+      const self = this
+      if (!user) {
+        qcloud.setLoginUrl(config.loginUrl)
+        qcloud.login({
+        success: function (userinfo) {
+          console.log('登录成功', userinfo)
+          showSuccess('登录成功')
+          wx.setStorageSync('userinfo', userinfo);
+          self.userinfo = userinfo
+        },
+        fail: function (err) {
+          console.log('登录失败', err)
+        }
+        })
+      }
+    }
+  },
+  onShow(){
+    let userinfo = wx.getStorageSync('userinfo')
+    if(userinfo){
+      this.userinfo = userinfo
+    }
+  }
+}
 // import qcloud from 'wafer2-client-sdk'
 // import YearProgress from '@/components/YearProgress'
 // import {showSuccess, post} from '@/util'
 // import config from '@/config'
-export default {
-  // components: {
-  //   YearProgress
-  // },
-  // data () {
-  //   return {
-  //     userinfo: {
-  //       avatarUrl: '../../../static/img/unlogin.png',
-  //       nickName: '点击登录'
-  //     }
-  //   }
-  // },
-  // methods: {
+// export default {
+// components: {
+//   YearProgress
+// },
+// data () {
+//   return {
+//     userinfo: {
+//       avatarUrl: '../../../static/img/unlogin.png',
+//       nickName: '点击登录'
+//     }
+//   }
+// },
+// methods: {
 
-  //   scanBook () {
-  //     wx.scanCode({
-  //       success: (res) => {
-  //         if (res.result) {
-  //           console.log(res.result)
-  //         }
-  //       }
-  //     })
-  //   },
-  //   login () {
-  //     let user = wx.getStorageSync('userinfo')
-  //     const self = this
-  //     if (!user) {
-  //       qcloud.setLoginUrl(config.loginUrl)
-  //       qcloud.login({
-  //         success: function (userinfo) {
-  //           qcloud.request({
-  //             url: config.userUrl,
-  //             login: true,
-  //             success (userRes) {
-  //               showSuccess('登录成功')
-  //               wx.setStorageSync('userinfo', userRes.data.data)
-  //               self.userinfo = userRes.data.data
-  //             }
-  //           })
-  //         }
+//   scanBook () {
+//     wx.scanCode({
+//       success: (res) => {
+//         if (res.result) {
+//           console.log(res.result)
+//         }
+//       }
+//     })
+//   },
+//   login () {
+//     let user = wx.getStorageSync('userinfo')
+//     const self = this
+//     if (!user) {
+//       qcloud.setLoginUrl(config.loginUrl)
+//       qcloud.login({
+//         success: function (userinfo) {
+//           qcloud.request({
+//             url: config.userUrl,
+//             login: true,
+//             success (userRes) {
+//               showSuccess('登录成功')
+//               wx.setStorageSync('userinfo', userRes.data.data)
+//               self.userinfo = userRes.data.data
+//             }
+//           })
+//         }
 
-  //       })
-  //     }
-  //   }
-  // },
-  // onShow () {
-  //   // console.log(123)
-  //   let userinfo = wx.getStorageSync('userinfo')
-  //   // console.log([userinfo])
-  //   if (userinfo) {
-  //     this.userinfo = userinfo
-  //   }
-  //   // console.log(this.userinfo)
-  // }
-}
+//       })
+//     }
+//   }
+// },
+// onShow () {
+//   // console.log(123)
+//   let userinfo = wx.getStorageSync('userinfo')
+//   // console.log([userinfo])
+//   if (userinfo) {
+//     this.userinfo = userinfo
+//   }
+//   // console.log(this.userinfo)
+// }
+// }
 </script>
 
-<style>
+<style lang='scss'>
+.container{
+  padding:0 30rpx;
+
+}  
+.userinfo{
+  margin-top:100rpx;
+  text-align:center;
+  img{
+    width: 150rpx;
+    height:150rpx;
+    margin: 20rpx;
+    border-radius: 50%;
+  }
+}
 
 
 </style>
+
