@@ -1,13 +1,12 @@
 <template>
   <div class="container">
-    个人中心page
     <div class="userinfo" open-type="getUserInfo" @getuserinfo="doLogin">
       <img :src="userinfo.avatarUrl" alt="">
       <p>{{userinfo.nickName}}</p>
     </div>
-    <!-- <YearProgress></YearProgress> -->
+    <YearProgress></YearProgress>
 
-    <!-- <button v-if='userinfo.openId' @click='scanBook' class='btn'>添加图书</button> -->
+    <button v-if='userinfo.openId' @click='scanBook' class='btn'>添加图书</button>
     <div>
     <button open-type="getUserInfo" lang="zh_CN" @getuserinfo="doLogin">获取用户信息</button>
     </div>
@@ -15,40 +14,62 @@
 </template>
 <script>
 import {showSuccess} from '@/util'
+import YearProgress from '@/components/YearProgress'
 import qcloud from 'wafer2-client-sdk'
 import config from '@/config'
 export default {
+  components: {
+    YearProgress
+  },
   data () {
-  return {
-    userinfo: {
-      avatarUrl: '/static/img/unlogin.png',
-      nickName: '点击登录'
+    return {
+      userinfo: {
+        avatarUrl: '/static/img/unlogin.png',
+        nickName: '点击登录'
+      }
     }
-  }
   },
   methods: {
+    scanBook () {
+      wx.scanCode({
+        success: (res) => {
+          if (res.result) {
+            this.addBook(res.result)
+          }
+        }
+      })
+    },
     doLogin: function (e) {
       let user = wx.getStorageSync('userinfo')
       const self = this
       if (!user) {
         qcloud.setLoginUrl(config.loginUrl)
         qcloud.login({
-        success: function (userinfo) {
-          console.log('登录成功', userinfo)
-          showSuccess('登录成功')
-          wx.setStorageSync('userinfo', userinfo);
-          self.userinfo = userinfo
-        },
-        fail: function (err) {
-          console.log('登录失败', err)
-        }
+          success: function (userinfo) {
+            console.log('登录成功', userinfo)
+            showSuccess('登录成功')
+            wx.setStorageSync('userinfo', userinfo)
+            self.userinfo = userinfo
+          // qcloud.request({
+          //   url: config.userUrl,
+          //   login: true,
+          //   success (userRes) {
+          //     showSuccess('登录成功')
+          //     wx.setStorageSync('userinfo', userRes.data.data)
+          //     self.userinfo = userRes.data.data
+          //   }
+          // })
+          },
+          fail: function (err) {
+            console.log('登录失败', err)
+          }
         })
       }
     }
   },
-  onShow(){
+  onShow () {
     let userinfo = wx.getStorageSync('userinfo')
-    if(userinfo){
+    if (userinfo) {
       this.userinfo = userinfo
     }
   }
