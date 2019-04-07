@@ -1,78 +1,86 @@
 <template>
-  <div class="container">
-    图书列表page
-    <!-- <div class="userinfo" @click='login'>
-      <img :src="userinfo.avatarUrl" alt="">
-      <p>{{userinfo.nickName}}</p>
-    </div>
-    <YearProgress></YearProgress>
-
-    <button v-if='userinfo.openId' @click='scanBook' class='btn'>添加图书</button> -->
+  <div>
+    <TopSwiper :tops='tops'></TopSwiper>
+    <Card :key='book.id' v-for='book in books' :book='book'></Card>
+    <p class='text-footer' v-if='!more'>
+      没有更多数据
+    </p>
   </div>
 </template>
 <script>
-// import qcloud from 'wafer2-client-sdk'
-// import YearProgress from '@/components/YearProgress'
-// import {showSuccess, post} from '@/util'
-// import config from '@/config'
+// 35条数据
+// 每次加载10条
+// 0页   0-10
+// 1     10-20
+// 2     20-30（5）
+// page 当前第几页
+
+// 没有更多数据
+// 1. page=0 不能显示这条提醒
+// 2. page>0 数据长度<10 停止触底加载
+
+import {get} from '@/util'
+import Card from '@/components/Card'
+import TopSwiper from '@/components/TopSwiper'
 export default {
-  // components: {
-  //   YearProgress
-  // },
-  // data () {
-  //   return {
-  //     userinfo: {
-  //       avatarUrl: '../../../static/img/unlogin.png',
-  //       nickName: '点击登录'
-  //     }
-  //   }
-  // },
-  // methods: {
+  components: {
+    Card,
+    TopSwiper
+  },
+  data () {
+    return {
+      books: [],
+      page: 0,
+      more: true,
+      tops: []
+    }
+  },
+  methods: {
+    async getList (init) {
+      if (init) {
+        this.page = 0
+        this.more = true
+      }
+      wx.showNavigationBarLoading()
+      const books = await get('/weapp/booklist', {page: this.page})
+      if (books.list.length < 10 && this.page > 0) {
+        this.more = false
+        console.log(this.more)
+      }
+      if (init) {
+        this.books = books.list
+        wx.stopPullDownRefresh()
+      } else {
+        // 下拉刷新，不能直接覆盖books 而是累加
+        this.books = this.books.concat(books.list)
+      }
 
-  //   scanBook () {
-  //     wx.scanCode({
-  //       success: (res) => {
-  //         if (res.result) {
-  //           console.log(res.result)
-  //         }
-  //       }
-  //     })
-  //   },
-  //   login () {
-  //     let user = wx.getStorageSync('userinfo')
-  //     const self = this
-  //     if (!user) {
-  //       qcloud.setLoginUrl(config.loginUrl)
-  //       qcloud.login({
-  //         success: function (userinfo) {
-  //           qcloud.request({
-  //             url: config.userUrl,
-  //             login: true,
-  //             success (userRes) {
-  //               showSuccess('登录成功')
-  //               wx.setStorageSync('userinfo', userRes.data.data)
-  //               self.userinfo = userRes.data.data
-  //             }
-  //           })
-  //         }
-
-  //       })
-  //     }
-  //   }
-  // },
-  // onShow () {
-  //   // console.log(123)
-  //   let userinfo = wx.getStorageSync('userinfo')
-  //   // console.log([userinfo])
-  //   if (userinfo) {
-  //     this.userinfo = userinfo
-  //   }
-  //   // console.log(this.userinfo)
-  // }
+      wx.hideNavigationBarLoading()
+    },
+    async getTop () {
+      const tops = await get('/weapp/top')
+      this.tops = tops.list
+    }
+  },
+  onPullDownRefresh () {
+    this.getList(true)
+    this.getTop()
+  },
+  onReachBottom () {
+    if (!this.more) {
+      // 没有更多了
+      return false
+    }
+    this.page = this.page + 1
+    this.getList()
+  },
+  mounted () {
+    this.getList(true)
+    this.getTop()
+  }
 }
 </script>
-
-<style>
+<style lang='scss'>
 
 
 </style>
