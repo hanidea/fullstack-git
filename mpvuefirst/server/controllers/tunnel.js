@@ -19,7 +19,7 @@ const connectedTunnelIds = []
 const $broadcast = (type, content) => {
     tunnel.broadcast(connectedTunnelIds, type, content)
         .then(result => {
-            const invalidTunnelIds = result.data && result.data.invalidTunnelIds || []
+            const invalidTunnelIds = (result.data && result.data.invalidTunnelIds) || []
 
             if (invalidTunnelIds.length) {
                 console.log('检测到无效的信道 IDs =>', invalidTunnelIds)

@@ -32,6 +32,11 @@
         "selectedIconPath": "static/img/me-active.png"
       }],
       "position": "bottom"
+    },
+    "permission":{
+      "scope.userLocation":{
+        "desc": "你的位置信息接口将用于评论展示"
+      }
     }
     
   }
