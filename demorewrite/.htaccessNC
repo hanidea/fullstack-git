@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^test/(.*)\.htm /tmp/$1.htm [NC]

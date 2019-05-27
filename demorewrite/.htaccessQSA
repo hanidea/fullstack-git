@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^per/(.*)$ /per.php?url=$1 [R,QSA]

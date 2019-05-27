@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteRule ^(.*) first.php?url=$1 [L]
+RewriteRule ^(.*) second.php?url=$1

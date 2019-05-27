@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^(.*)\.htm /index.html#$1 [R,NE]

@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond ${hosts-deny:%{REMOTE_ADDR}|NOTFOUND} deny [OR]
+RewriteCond ${hosts-deny:%{REMOTE_HOST}|NOTFOUND} deny
+RewriteRule ^ - [F]

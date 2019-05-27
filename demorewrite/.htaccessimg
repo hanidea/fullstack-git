@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !demowrite.com:8888 [NC]
+RewriteRule \.(gif|jpg|png)$ - [F,NC]
