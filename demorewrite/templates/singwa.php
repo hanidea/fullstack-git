@@ -81,8 +81,8 @@ var hotHtml = function (data) {
       <span class="qukmore_sec"><a href="#">More &gt;&gt;</a></span> </div>
     <div class="zncompan">
       <h1>二手车</h1>
-      <ul>
-        <li><a href="#">宝马530豪华配置带天窗530S宝马530豪华配置带天窗530S</a></li>
+      <ul id="hot_html">
+        <!-- <li><a href="#">宝马530豪华配置带天窗530S宝马530豪华配置带天窗530S</a></li> -->
       </ul>
       <span class="qukmore_sec"><a href="#">More &gt;&gt;</a></span> </div>
     <div class="zncompan_thr">
@@ -144,6 +144,6 @@ var hotHtml = function (data) {
     </div>
   </div>
 </div>
-
+<script src="/public/js/hot.js"></script>
 </body>
 </html>
