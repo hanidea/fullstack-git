@@ -1,4 +1,5 @@
-new Promise((resolve,reject)=>{
+//promise 结构
+new Promise((resolve, reject)=>{
     //异步函数
     $.ajax({
         url:'http://happymmall.com/user/get_user_info.do',
@@ -10,8 +11,8 @@ new Promise((resolve,reject)=>{
             reject(err); 
         }
     });
-}).then(()=>{
-
-},()=>{
-
+}).then((res)=>{
+    console.log('success:',res);
+},(err)=>{
+    console.log('error:',err);
 });
