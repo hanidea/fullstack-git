@@ -32,15 +32,17 @@ class Component extends React.Component{
 }
 class App extends React.Component{
   render(){
-    return {
+    return (
       <div className="">
+          <h1>APP</h1>
+          <hr/>
           <Component/>
       </div>
-    };
+    );
   }
 }
 
 ReactDOM.render(
-  <Component/>,
+  <App/>,
   document.getElementById('app')
 );
