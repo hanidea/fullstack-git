@@ -30,6 +30,15 @@ class Component extends React.Component{
       );
   }
 }
+class App extends React.Component{
+  render(){
+    return {
+      <div className="">
+          <Component/>
+      </div>
+    };
+  }
+}
 
 ReactDOM.render(
   <Component/>,
