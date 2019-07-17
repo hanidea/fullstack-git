@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server",
     "dist": "node_modules/.bin/webpack -p"
   },
@@ -26,6 +26,7 @@
     "node-sass": "^4.12.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
+    "react-router-dom": "4.2.2",
     "url-loader": "^0.6.2"
   }
 }
