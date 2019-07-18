@@ -377,9 +377,16 @@ text-decoration: none;
 color: #319DB5 !important;
 background: transparent;
 }
+.top-navbar .nav > li:hover .dropdown-menu{
+    display: block;
+}
+
 .top-navbar .dropdown-menu{
 min-width: 230px;
 border-radius: 0 0 4px 4px;
+}
+.dropdown-menu >li >a {
+    cursor: pointer;
 }
 .top-navbar .dropdown-menu > li > a:hover, .top-navbar .dropdown-menu > li > a:focus{
 color: #225081;

@@ -5,6 +5,9 @@ class TopNav extends React.Component{
     constructor(props){
         super(props)
     }
+    onLogout(){
+
+    }
     render(){
         return (
             <div className="navbar navbar-default top-navbar" role="navigation">
@@ -24,12 +27,11 @@ class TopNav extends React.Component{
                         <i className="fa fa-user fa-fw"></i><span>欢迎，adminV1</span><i className="fa fa-caret-down"></i>
                     </a>
                     <ul className="dropdown-menu dropdown-user">
-                        <li><a href="#"><i className="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i className="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li className="divider"></li>
-                        <li><a href="#"><i className="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                            <a onClick={()=>{this.onLogout()}}>
+                                <i className="fa fa-sign-out fa-fw"></i>
+                                <span>退出登录</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
