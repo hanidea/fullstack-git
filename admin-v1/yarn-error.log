@@ -5664,7 +5664,7 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit signal: SIGKILL
   Command: sh
   Arguments: -c node_modules/.bin/webpack-dev-server
   Directory: /Users/James/learngit/fullstack-git.io/admin-v1
