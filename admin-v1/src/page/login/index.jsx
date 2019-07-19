@@ -1,5 +1,7 @@
 import React from 'react';
-import './index.scss'
+import MUtil from 'util/mm.jsx';
+const _mm = new MUtil();
+import './index.scss';
 
 class Login extends React.Component{
     constructor(props){
@@ -13,10 +15,24 @@ class Login extends React.Component{
     onInputChange(e){
         let inputValue = e.target.value,
             inputName = e.target.name;
-        // console.log(e.target.value)
-        console.log(inputName,inputValue)
+        // console.log(inputName,inputValue)
         this.setState({
             [inputName] : inputValue
+        });
+    }
+    //用户提交表单
+    onSubmit(){
+        _mm.request({
+            type: 'post',
+            url: '/manage/user/login.do',
+            data: {
+                username : this.state.username,
+                password : this.state.password
+            }
+        }).then((res)=>{
+
+        },(err)=>{
+
         });
     }
     // //当密码发生改变
@@ -32,7 +48,7 @@ class Login extends React.Component{
                     <div className="panel panel-default login-panel">
                         <div className="panel-heading">欢迎登录-ADMINV1</div>
                         <div className="panel-body">
-                            <form>
+                            <div>
                                 <div className="form-group">
                                     <input type="text" 
                                         name="username"
@@ -48,8 +64,10 @@ class Login extends React.Component{
                                         onChange={e => this.onInputChange(e)}
                                         autoComplete="true"/>
                                 </div>
-                                <button type="submit" className="btn btn-lg btn-primary btn-block">登录</button>
-                            </form>
+                                <button
+                                    className="btn btn-lg btn-primary btn-block"
+                                    onClick={e => {this.onSubmit(e)}}>登录</button>
+                            </div>
                         </div>
                     </div>
                 </div>
