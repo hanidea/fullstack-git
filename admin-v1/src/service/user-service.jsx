@@ -33,5 +33,13 @@ class User{
         }
         
     }
+    //退出登录
+    logout(){
+        return _mm.request({
+            type: 'post',
+            url: 'user/logout.do'
+        })
+    }
 }
+
 export default User;
