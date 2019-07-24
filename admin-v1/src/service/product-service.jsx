@@ -28,6 +28,19 @@ class Product{
             data    : productInfo
         });
     }
+    /*
+    *  品类相关
+    */
+    // 根据父品类id获取品类列表
+    getCategoryList(parentCategoryId){
+        return _mm.request({
+            type    : 'post',
+            url     : '/manage/category/get_category.do',
+            data    : {
+                categoryId : parentCategoryId || 0
+            }
+        });
+    }
 }
 
 export default Product;

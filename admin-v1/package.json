@@ -24,9 +24,11 @@
     "file-loader": "^1.1.6",
     "font-awesome": "^4.7.0",
     "node-sass": "^4.12.0",
+    "prop-types": "15.6.0",
     "rc-pagination": "1.15.1",
     "react": "16.2.0",
     "react-dom": "16.2.0",
+    "react-fileupload": "2.4.0",
     "react-router-dom": "4.2.2",
     "url-loader": "^0.6.2"
   }
