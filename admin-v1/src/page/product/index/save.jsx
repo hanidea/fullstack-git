@@ -4,7 +4,7 @@ import Product              from 'service/product-service.jsx'
 import PageTitle            from 'component/page-title/index.jsx';
 import CategorySelector     from './category-selector.jsx';
 import FileUploader         from 'util/file-uploader/index.jsx'
-// import RichEditor           from 'util/rich-editor/index.jsx'
+import RichEditor           from 'util/rich-editor/index.jsx'
 
 import './save.scss';
 

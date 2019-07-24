@@ -96,7 +96,7 @@ class ProductList extends React.Component{
                     </td>
                     <td>
                         <Link className="opear" to={`/product/detail/${product.id}` + product.id }>详情</Link>
-                        <Link className="opear" to={`/product/detail/${product.id}`}>编辑</Link>
+                        <Link className="opear" to={`/product/save/${product.id}`}>编辑</Link>
                     </td>
                 </tr>
             );
