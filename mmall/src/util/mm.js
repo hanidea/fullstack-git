@@ -1,8 +1,6 @@
 /*
  * @Author: James 
  * @Date: 2019-01-02 13:21:37 
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-15 13:53:27
  */
 // var Hogan = require ('hogan');
 var Hogan = require("hogan.js");
