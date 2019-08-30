@@ -1,8 +1,6 @@
 /*
  * @Author: James 
  * @Date: 2018-12-18 15:47:41 
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-01-24 14:06:16
  */
 require('./index.css');
 require('page/common/nav/index.js');
