@@ -49,15 +49,15 @@ var config = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    //publicPath: '//s.happymmall.com/mmall-fe/dist/',
-    publicPath: '/dist/',
+    publicPath: '//s.bighanhan.com/mmall/dist/',
+    //publicPath: '/dist/',
     filename: 'js/[name].js',
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     hot : true,
     inline : true,
-    port: 9000,
+    port: 8080,
     disableHostCheck: true
   },
   externals:{
