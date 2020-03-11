@@ -1,5 +1,14 @@
 {
   "pages": [
     "pages/classic/classic"
-  ]
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffff00",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "瀚林府",
+    "navigationStyle": "default",
+    "backgroundColor": "#ffffff",
+    "enablePullDownRefresh": false
+  },
+  "sitemapLocation": "sitemap.json"
 }
