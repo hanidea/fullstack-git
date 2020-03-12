@@ -1,1 +1,14 @@
 /* components/like/index.wxss */
+
+.container {
+}
+
+.container image {
+  width: 32rpx;
+  height: 28rpx;
+}
+.container text{
+  /* font-family: "PingFangSC-Thin"; */
+  /* font-size:48rpx; */
+  color:#bbbbbb;
+}
