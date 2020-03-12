@@ -1,6 +1,8 @@
 /* components/like/index.wxss */
-
-.container {
+.container{
+  display: inline-flex;
+  flex-direction: row;
+  padding:10rpx;
 }
 
 .container image {
@@ -9,6 +11,10 @@
 }
 .container text{
   /* font-family: "PingFangSC-Thin"; */
-  /* font-size:48rpx; */
+  line-height: 24rpx;
+  font-size:24rpx; 
   color:#bbbbbb;
+  position: relative;
+  bottom:10rpx;
+  left:6rpx;
 }
