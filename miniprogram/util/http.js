@@ -1,6 +1,11 @@
 import {
   config
 } from '../config.js'
+const tips ={
+  1:'抱歉,出现一个错误',
+  1005:'appkey无效，请申请',
+  3000:'期刊不存在'
+}
 class HTTP {
   request(params) {
     //url, data, method,
@@ -20,18 +25,25 @@ class HTTP {
         if (code.startsWith('2')) {
           params.success(res.data)
         } else {
-          wx.showToast({
-            title: '错误',
-            icon:'none',
-            duration:'2000'
-          })
+          let error_code = res.data.error_code
+          this._show_error(error_code)
         }
       },
       fail: (err) => {
-
+        this._show_error(1)
       }
     })
 
+  }
+  _show_error(error_code){
+    if(!error_code){
+      error_code = 1
+    }
+    wx.showToast({
+      title: tips[error_code],
+      icon: 'none',
+      duration: 2000
+    })
   }
 }
 
