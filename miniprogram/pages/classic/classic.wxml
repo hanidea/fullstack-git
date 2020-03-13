@@ -1,2 +1,2 @@
 <v-like like="{{classic.like_status}}" count="{{classic.fav_nums}}"/>
-<view class='container' />
+<v-movie img="{{classic.image}}" content="{{classic.content}}"/>

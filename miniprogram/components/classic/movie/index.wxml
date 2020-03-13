@@ -1,6 +1,6 @@
 <!--components/classic/movie/index.wxml-->
-<view>
-  <image/>
-  <image/>
-  <text></text>
+<view class="classic-container">
+  <image class="class-img" src="{{img}}"/>
+  <image class="tag" src="images/movie@tag.png"/>
+  <text class="content">{{content}}</text>
 </view>
