@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
+    classic:null
   },
 
   /**
@@ -19,6 +19,7 @@ Page({
       this.setData({
         classic:res
       })
+      console.log(this.data)
     })
   },
 
