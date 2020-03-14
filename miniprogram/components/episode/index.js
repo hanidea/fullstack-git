@@ -4,7 +4,18 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    index:Number
+    index:{
+      type:Number,
+      observer:function(newVal,oldVal,changedPath){
+        // console.log(newVal)
+        // console.log(oldVal)
+        // console.log(changedPath)
+        let val = newVal < 10?'0'+newVal:newVal
+        this.setData({
+          index:val
+        })
+      }
+    }
   },
 
   /**
