@@ -25,6 +25,7 @@ Page({
         classic:res
       })
       console.log(this.data)
+      //latestClassic latestIndex currentClassic currentIndex
     })
   },
 
@@ -39,7 +40,13 @@ Page({
   },
   
   onPrevious:function(event){
-
+    let index = this.data.classic.index
+    classicModel.getPrevious(index,(res)=>{
+      //console.log(res)
+      this.setData({
+        classic:res
+      })
+    })
   },
 
   /**

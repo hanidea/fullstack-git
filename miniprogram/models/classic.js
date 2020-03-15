@@ -8,6 +8,21 @@ class ClassicModel extends HTTP{
       }
     })
   }
+  getPrevious(index,sCallback){
+    this.request({
+      url:'classic/'+index+'/previous',
+      success: (res) => {
+        sCallback(res)
+      }
+    })
+  }
+  isFirst(index){
+    return index == 1 ? true : false
+  }
+
+  isLatest(index){
+    return index == 8 ? true : false
+  }
 }
 
 export{ClassicModel}
