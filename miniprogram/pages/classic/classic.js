@@ -24,7 +24,7 @@ Page({
       this.setData({
         classic:res
       })
-      console.log(this.data)
+      //console.log(this.data)
       //latestClassic latestIndex currentClassic currentIndex
     })
   },
@@ -36,15 +36,21 @@ Page({
   },
 
   onNext:function(event){
-
+    this._updateClassic('next')
   },
-  
-  onPrevious:function(event){
+
+  onPrevious: function (event) {
+    this._updateClassic('previous')
+  },
+
+  _updateClassic:function(nextOrPrevious){
     let index = this.data.classic.index
-    classicModel.getPrevious(index,(res)=>{
+    classicModel.getClassic(index,nextOrPrevious, (res) => {
       //console.log(res)
       this.setData({
-        classic:res
+        classic: res,
+        latest: classicModel.isLatest(res.index),
+        first: classicModel.isFirst(res.index)
       })
     })
   },
