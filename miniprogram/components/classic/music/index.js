@@ -22,9 +22,15 @@ Component({
     playSrc:'images/player@play.png'
   },
 
+  // hidden ready created
+  // onShow
+  attached:function(event){
+    this._recoverStatus()
+  },
+
   detached:function(event){
-    //wx:if hidden
-    mMgr.stop()
+    //wx:if触发 hidden
+    //mMgr.stop()
   },
   /**
    * 组件的方法列表
@@ -42,6 +48,20 @@ Component({
           playing:false
         })
         mMgr.pause()
+      }
+    },
+
+    _recoverStatus:function(){
+      if(mMgr.paused){
+        this.setData({
+          playing:false
+        })
+        return
+      }
+      if(mMgr.src == this.properties.src){
+        this.setData({
+          playing:true
+        })
       }
     }
   }
