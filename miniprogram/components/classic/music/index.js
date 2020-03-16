@@ -6,6 +6,7 @@ const mMgr = wx.getBackgroundAudioManager()
 Component({
   /**
    * 组件的属性列表
+   * 动画api css3 canvas
    */
   behaviors: [classicBeh],
   properties: {
@@ -26,6 +27,7 @@ Component({
   // onShow
   attached:function(event){
     this._recoverStatus()
+    this._monitorSwitch()
   },
 
   detached:function(event){
@@ -63,6 +65,21 @@ Component({
           playing:true
         })
       }
-    }
+    },
+  
+  _monitorSwitch:function(){
+    mMgr.onPlay(()=>{
+      this._recoverStatus()
+    })
+    mMgr.onPause(() => {
+      this._recoverStatus()
+    })
+    mMgr.onStop(() => {
+      this._recoverStatus()
+    })
+    mMgr.onEnded(() => {
+      this._recoverStatus()
+    })
+  }
   }
 })
