@@ -6,11 +6,6 @@ class BookModel extends HTTP{
   getHotList(){
     return this.request({
       url:'book/hot_list',
-      // data:{
-      //   name:'1',
-      //   age:18
-      // },
-      // method:'POST'
     })
   }
   getMyBookCount(){
