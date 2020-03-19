@@ -14,7 +14,8 @@ Page({
     //callback return
     //promise
     //async await
-    books:[]
+    books:[],
+    searching:false,
   },
 
   /**
@@ -46,7 +47,16 @@ Page({
     //   console.log(error)
     // })
   },
-
+  onSearching(event){
+    this.setData({
+      searching:true
+    })
+  },
+  onCancel(event){
+    this.setData({
+      searching: false
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

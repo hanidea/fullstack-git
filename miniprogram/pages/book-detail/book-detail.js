@@ -25,30 +25,43 @@ Page({
    */
   onLoad: function(options) {
     //id
+    wx.showLoading()
     const bid = options.bid
     const detail = bookModel.getDetail(bid)
     const comments = bookModel.getComments(bid)
     const likeStatus = bookModel.getLikeStatus(bid)
-    detail.then(res => {
-      console.log(res)
+    
+    Promise.all([detail,comments,likeStatus])
+    .then(res=>{
       this.setData({
+        book: res[0],
+        comments: res[1].comments,
+        likeStatus: res[2].like_status,
+        likeCount: res[2].fav_nums
+      })
+      wx.hideLoading()
+    })
 
-        book: res
-      })
-    })
-    comments.then(res => {
-      console.log(res)
-      this.setData({
-        comments: res.comments
-      })
-    })
-    likeStatus.then(res => {
-      console.log(res)
-      this.setData({
-        likeStatus: res.like_status,
-        likeCount: res.fav_nums,
-      })
-    })
+    // detail.then(res => {
+    //   console.log(res)
+    //   this.setData({
+    //     book: res
+    //   })
+      
+    // })
+    // comments.then(res => {
+    //   console.log(res)
+    //   this.setData({
+    //     comments: res.comments
+    //   })
+    // })
+    // likeStatus.then(res => {
+    //   console.log(res)
+    //   this.setData({
+    //     likeStatus: res.like_status,
+    //     likeCount: res.fav_nums,
+    //   })
+    // })
   },
 
   onLike(event) {
