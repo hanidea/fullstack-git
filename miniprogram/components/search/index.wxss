@@ -31,15 +31,6 @@
     color: #999;
 }
 
-.bar {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    display: inline-block;
-    height: 68rpx;
-    width: 1000rpx;
-    font-size: 28rpx;
-}
-
 .icon {
     width: 28rpx;
     height: 28rpx;
@@ -59,6 +50,7 @@
     width: 28rpx;
     height: 28rpx;
     margin-right: 20rpx;
+    display: inline-block;
 }
 
 .history {
