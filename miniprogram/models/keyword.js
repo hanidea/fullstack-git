@@ -12,9 +12,9 @@ class KeywordModel extends HTTP {
   }
 
   getHot() {
-    // return this.request({
-    //   url: '/book/hot_keyword'
-    // })
+    return this.request({
+      url: '/book/hot_keyword'
+    })
   }
 
   addToHistory(keyword) {
