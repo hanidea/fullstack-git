@@ -19,7 +19,7 @@ Component({
     hotWords:[],
     dataArray:[],
     searching:false,
-    w:''
+    q:''
   },
 
   attached(){
@@ -51,11 +51,11 @@ Component({
       this.setData({
         searching:true
       })
-      const q = event.detail.value || event.detail.test
+      const q = event.detail.value || event.detail.text
       bookModel.search(0,q).then(res=>{
         this.setData({
           dataArray:res.books,
-          w:q
+          q
         })
         keywordModel.addToHistory(q)
       })

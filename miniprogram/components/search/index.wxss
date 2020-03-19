@@ -49,8 +49,9 @@
 .cancel-img {
     width: 28rpx;
     height: 28rpx;
-    margin-right: 20rpx;
-    display: inline-block;
+    margin-left: 520rpx;
+    position:absolute;
+    z-index:999
 }
 
 .history {
