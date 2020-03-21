@@ -22,7 +22,8 @@ Component({
     hotWords:[],
     dataArray:[],
     searching:false,
-    q:''
+    q:'',
+    loading:false
   },
 
   attached(){
@@ -47,12 +48,18 @@ Component({
       if(!this.data.q){
         return
       }
+      if(this.data.loading){
+        return
+      }
+      //锁
       const length = this.data.dataArray.length
+      this.data.loading = true
       bookModel.search(length,this.data.q).then(res=>{
         const tempArray = this.data.dataArray.concat(res.books)
         this.setData({
-          dataArray:tempArray
+          dataArray:tempArray,
         })
+        this.data.loading = false
       })
     },
     onCancel(event){
