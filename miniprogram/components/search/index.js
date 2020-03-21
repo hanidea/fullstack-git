@@ -50,54 +50,42 @@ Component({
       if(!this.data.q){
         return
       }
-      if(this._isLocked()){
+      if(this.isLocked()){
         return
       }
       if(this.hasMore()){
         this.data.loading = true
-        this._locked()
+        this.locked()
       bookModel.search(this.getCurrentStart(),this.data.q).then(res=>{
         this.setMoreData(res.books)
-        this._unLocked()
+        this.unLocked()
         this.data.loading = false
       },()=>{
-        this._unLocked()
+        this.unLocked()
         this.data.loading = false
       })
       }
     },
-    _isLocked(){
-      return this.data.loading?true:false
-    },
-    _locked(){
-      //this.data.loading = true
-      this.setData({
-        loading:true
-      })
-    },
-    _unLocked() {
-      //this.data.loading = false
-      this.setData({
-        loading: false
-      })
-    },
     onCancel(event){
+      this.initialize()
       this.triggerEvent('cancel',{},{})
     },
     onDelete(event){
+
+      this.initialize()
       this._closeResult()
     },
     onConfirm(event){
       this._showResult()
       this._showLoadingCenter()
-      this.initialize()
+      //this.initialize()
       const q = event.detail.value || event.detail.text
+      this.setData({
+        q
+      })
       bookModel.search(0,q).then(res=>{
         this.setMoreData(res.books)
         this.setTotal(res.total)
-        this.setData({
-          q
-        })
         keywordModel.addToHistory(q)
         this._hideLoadingCenter()
       })
@@ -122,7 +110,8 @@ Component({
     },
     _closeResult() {
       this.setData({
-        searching: false
+        searching: false,
+        q:''
       })
     }
 
