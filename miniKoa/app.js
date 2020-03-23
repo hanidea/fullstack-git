@@ -1,19 +1,8 @@
 const Koa = require('koa')
+const InitManager = require('./core/init')
 
 const app = new Koa()
-
-app.use(async (ctx, next)=>{
-    await next()
-    const r = ctx.r
-    console.log(r)
-})
-
-app.use(async (ctx, next)=>{
-    const axios = require('axios')
-    const res = await axios.get('https://www.bighanhan.com')
-    ctx.r = res
-    await next()
-})
-
+//process.cwd()
+InitManager.initCore(app)
 
 app.listen(3000)
