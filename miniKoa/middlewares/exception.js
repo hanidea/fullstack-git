@@ -11,6 +11,14 @@ const catchError = async (ctx,next)=>{
             }
             ctx.status = error.code
         }
+        else{
+            ctx.body={
+                msg:'made a mistake.',
+                error_code:999,
+                request:`${ctx.method} ${ctx.path}`
+            }
+            ctx.status = 500
+        }
         //ctx.body = '服务器有点问题，你等一下'
     }
 }
