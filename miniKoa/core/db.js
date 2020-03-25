@@ -31,7 +31,7 @@ const sequelize = new Sequelize(dbName, user, password, {
 })
 
 sequelize.sync({
-    force: true // 自动删除原来表，重新创建新的表
+    force: false // 自动删除原来表，重新创建新的表
 })
 
 module.exports = {
