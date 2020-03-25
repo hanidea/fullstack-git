@@ -5,7 +5,11 @@ const {
 
 const {
     sequelize
-} = require('@core/db')
+} = require('../../core/db')
+
+class User extends Model{
+    
+}
 
 User.init({
     id: {
@@ -20,11 +24,11 @@ User.init({
     },
     password: {
         type: Sequelize.STRING,
-        set(val) {
-            const salt = bcrypt.genSaltSync(10)
-            const pwd = bcrypt.hashSync(val, salt)
-            this.setDataValue('password', pwd)
-        }
+        // set(val) {
+        //     const salt = bcrypt.genSaltSync(10)
+        //     const pwd = bcrypt.hashSync(val, salt)
+        //     this.setDataValue('password', pwd)
+        // }
     },
     openid: {
         type: Sequelize.STRING(64),
