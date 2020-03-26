@@ -1,4 +1,5 @@
 const Router = require('koa-router')
+
 const {
     TokenValidator,
     NotEmptyValidate
@@ -20,6 +21,10 @@ const router = new Router({
     prefix: '/v1/token'
 })
 
+const{Auth} = require('../../../middlewares/auth')
+const {
+    WXManager
+  } = require('../../services/wx')
 router.post('/', async (ctx, next) => {
     const v = await new TokenValidator().validate(ctx)
     let token
@@ -42,7 +47,7 @@ router.post('/', async (ctx, next) => {
 
     const emailLogin = async (account, secret) => {
     const user = await User.verifyEmailPassword(account, secret)
-    return token = generateToken(user.id, 2)
+    return token = generateToken(user.id, Auth.USER)
 }
 
 module.exports = router
