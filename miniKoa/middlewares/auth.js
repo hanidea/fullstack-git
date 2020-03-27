@@ -28,7 +28,7 @@ class Auth {
             if (decode.scope < this.level) {
                 errMsg = '权限不足'
                 throw new global.errs.Forbbiden(errMsg)
-              }
+            }
 
             //token
             ctx.auth = {
@@ -38,6 +38,15 @@ class Auth {
 
             await next()
 
+        }
+    }
+
+    static verifyToken(token) {
+        try {
+            jwt.verify(token, global.config.security.secretKey)
+            return true
+        } catch (e) {
+            return false
         }
     }
 }
