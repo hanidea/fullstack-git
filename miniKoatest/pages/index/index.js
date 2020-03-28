@@ -1,3 +1,5 @@
+import {Base64} from 'js-base64'
+
 Page({
   onGetToken(){
     //code
@@ -42,8 +44,17 @@ Page({
       method: 'GET',
       success: res => {
         console.log(res.data)
+      },
+      header:{
+        Authorization:this._encode()
       }
     })
   },
+
+  _encode(){
+    const token = wx.getStorageSync('token')
+    const base64 = Base64.encode(token+':')
+    return 'Basic '+base64
+  }
 
 })

@@ -13,7 +13,7 @@ const{Auth} = require('../../../middlewares/auth')
 
 router.get('/latest', new Auth().m, async (ctx, next) => {
     //ctx.body = ctx.auth.uid
-    const flow = Flow.findOne({
+    const flow = await Flow.findOne({
         order:[
             ['index','DESC']
         ]
