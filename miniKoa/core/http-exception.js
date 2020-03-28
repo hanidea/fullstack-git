@@ -35,24 +35,41 @@ class NotFound extends HttpException {
     }
 }
 
-class AuthFailed  extends HttpException {
+class AuthFailed extends HttpException {
     constructor(msg, errorCode) {
         super()
         this.msg = msg || '授权失败'
         this.errorCode = errorCode || 10004
         this.code = 401
     }
-  }
+}
 
-class Forbbiden extends HttpException{
+class Forbbiden extends HttpException {
     constructor(msg, errorCode) {
         super()
         this.msg = msg || '禁止访问'
         this.errorCode = errorCode || 10006
         this.code = 403
     }
-  }
+}
 
+class LikeError extends HttpException {
+    constructor(msg, errorCode) {
+        super()
+        this.code = 400
+        this.msg = "你已经点赞过"
+        this.errorCode = 60001
+    }
+}
+
+class DislikeError extends HttpException {
+    constructor(msg, errorCode) {
+        super()
+        this.code = 400
+        this.msg = "你已取消点赞"
+        this.errorCode = 60002
+    }
+}
 
 module.exports = {
     HttpException,
@@ -60,5 +77,7 @@ module.exports = {
     Success,
     NotFound,
     AuthFailed,
-    Forbbiden
+    Forbbiden,
+    LikeError,
+    DislikeError
 }

@@ -14,7 +14,7 @@ const {
 
 class PostitiveIntegerValidator extends LinValidator {
     constructor() {
-        //super()
+        super()
         this.id = [
             new Rule('isInt', '需要是正整数', {
                 min: 1
@@ -104,9 +104,26 @@ class NotEmptyValidate extends LinValidator {
     }
 }
 
+function checkArtType(vals) {
+    if (!vals.body.type) {
+        throw new Error('type是必传参数')
+    }
+    if (!LoginType.isThisType(vals.body.type)) {
+        throw new Error('type参数不合法')
+    }
+  }
+
+class LikeValidator extends PostitiveIntegerValidator {
+    constructor() {
+        super()
+        this.validateType = checkArtType
+    }
+}
+
 module.exports = {
     PostitiveIntegerValidator,
     RegisterValidator,
     TokenValidator,
-    NotEmptyValidate
+    NotEmptyValidate,
+    LikeValidator
 }
