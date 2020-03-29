@@ -2,15 +2,15 @@ const Router = require('koa-router')
 
 const {
     Auth
-} = require('../../../middlewares/auth')
+} = require('@middlewares/auth')
 
 const {
     LikeValidator
-} = require('../../validators/validator')
+} = require('@validator')
 
 const {
     success
-} = require('../../lib/helper')
+} = require('@lib/helper')
 
 const {
     Favor
