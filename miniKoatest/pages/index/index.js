@@ -38,6 +38,20 @@ Page({
       }
     })
   },
+
+  onGetPrevious() {
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/6/previous',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+
   onGetLatest() {
     wx.request({
       url: 'http://localhost:3000/v1/classic/latest',
@@ -47,6 +61,19 @@ Page({
       },
       header:{
         Authorization:this._encode()
+      }
+    })
+  },
+
+  onGetNext() {
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/6/next',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
       }
     })
   },
