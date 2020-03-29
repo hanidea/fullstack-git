@@ -6,7 +6,7 @@ const {
 
 const {
     sequelize
-} = require('../../core/db')
+} = require('@core/db')
 
 class User extends Model {
     static async verifyEmailPassword(email, plainPassword) {

@@ -5,15 +5,15 @@ const router = new Router({
 
 const {
     Flow
-  } = require('../../models/flow')
+  } = require('@model/flow')
 
   const {
     Art
-  } = require('../../models/art')
+  } = require('@model/art')
 
-const {PostitiveIntegerValidator} = require('../../validators/validator')
+const {PostitiveIntegerValidator} = require('@validator')
 
-const{Auth} = require('../../../middlewares/auth')
+const{Auth} = require('@middlewares/auth')
 
 router.get('/latest', new Auth().m, async (ctx, next) => {
     //ctx.body = ctx.auth.uid

@@ -14,7 +14,7 @@ const {
 
 const {
     Favor
-} = require('../../models/favor')
+} = require('@model/favor')
 
 const router = new Router({
     prefix: '/v1/like'

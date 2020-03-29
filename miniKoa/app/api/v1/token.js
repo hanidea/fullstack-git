@@ -3,19 +3,19 @@ const Router = require('koa-router')
 const {
     TokenValidator,
     NotEmptyValidate
-} = require('../../validators/validator')
+} = require('@validator')
 const {
     LoginType,
     ArtType
-} = require('../../lib/enum')
+} = require('@lib/enum')
 
 const {
     User
-} = require('../../models/user')
+} = require('@model/user')
 
 const {
     generateToken
-} = require('../../../core/util')
+} = require('@core/util')
 
 const router = new Router({
     prefix: '/v1/token'
@@ -23,10 +23,10 @@ const router = new Router({
 
 const {
     Auth
-} = require('../../../middlewares/auth')
+} = require('@middlewares/auth')
 const {
     WXManager
-} = require('../../services/wx')
+} = require('@services/wx')
 router.post('/', async (ctx, next) => {
     const v = await new TokenValidator().validate(ctx)
     let token
