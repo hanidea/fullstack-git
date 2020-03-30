@@ -8,7 +8,7 @@ const {
 } = require('sequelize')
 const {
     Art
-  } = require('./art')
+} = require('./art')
 
 class Favor extends Model {
     static async like(artId, type, uid) {
@@ -32,7 +32,7 @@ class Favor extends Model {
             }, {
                 transaction: t
             })
-            const art = await Art.getData(artId, type,false)
+            const art = await Art.getData(artId, type, false)
             await art.increment('favNums', {
                 by: 1,
                 transaction: t
@@ -52,10 +52,10 @@ class Favor extends Model {
         }
         return sequelize.transaction(async t => {
             await favor.destroy({
-                force:true,
-                transaction:t
+                force: true,
+                transaction: t
             })
-            const art = await Art.getData(artId, type,false)
+            const art = await Art.getData(artId, type, false)
             await art.decrement('favNums', {
                 by: 1,
                 transaction: t
@@ -64,14 +64,28 @@ class Favor extends Model {
     }
     static async userLikeIt(artId, type, uid) {
         const favor = await Favor.findOne({
-          where: {
-            uid,
-            artId,
-            type,
-          }
+            where: {
+                uid,
+                artId,
+                type,
+            }
         })
         return favor ? true : false
-      }
+    }
+    static async getMyClassicFavors(uid) {
+        const arts = await Favor.findAll({
+            where: {
+                uid,
+                type: {
+                    [Op.not]: 400
+                }
+            }
+        })
+        if (!arts) {
+            throw new global.errs.NotFound()
+        }
+        return await Art.getList(arts)
+    }
 }
 
 Favor.init({

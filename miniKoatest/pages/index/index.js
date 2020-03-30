@@ -39,6 +39,46 @@ Page({
     })
   },
 
+  onGetClassicFavor() {
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/100/1/favor',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+
+  onGetMyFavorList() {
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/favor',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+
+  onGetDetail() {
+    wx.request({
+      url: 'http://localhost:3000/v1/classic/100/1',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+
+
   onGetPrevious() {
     wx.request({
       url: 'http://localhost:3000/v1/classic/6/previous',

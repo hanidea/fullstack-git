@@ -80,4 +80,41 @@ router.get('/:index/previous', new Auth().m, async ctx => {
     ctx.body = art
 })
 
+router.get('/:type/:id', new Auth().m, async ctx => {
+    const v = await new ClassicValidator().validate(ctx)
+    const id = v.get('path.id')
+    const type = parseInt(v.get('path.type'))
+
+    const artDetail = await new Art(id, type).getDetail(ctx.auth.uid)
+
+    artDetail.art.setDataValue('likeStatus', artDetail.likeStatus)
+
+    ctx.body = artDetail.art
+})
+
+router.get('/:type/:id/favor', new Auth().m, async ctx => {
+    const v = await new ClassicValidator().validate(ctx)
+    const id = v.get('path.id')
+    const type = parseInt(v.get('path.type'))
+    const artDetail = await new Art(id, type).getDetail(ctx.auth.uid)
+    //const art = await Art.getData(id, type)
+    // if (!art) {
+    //     throw new global.errs.NotFound()
+    // }
+    // const like = await Favor.userLikeIt(id, type, ctx.auth.uid)
+    // ctx.body = {
+    //     favNums: art.favNums,
+    //     likeStatus: like
+    // }
+    ctx.body = {
+        favNums: artDetail.art.favNums,
+        likeStatus: artDetail.likeStatus
+    }
+})
+
+router.get('/favor', new Auth().m, async ctx => {
+    const uid = ctx.auth.uid
+    ctx.body = await Favor.getMyClassicFavors(uid)
+})
+
 module.exports = router

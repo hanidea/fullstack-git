@@ -105,10 +105,14 @@ class NotEmptyValidate extends LinValidator {
 }
 
 function checkArtType(vals) {
-    if (!vals.body.type) {
+    let type = vals.body.type || vals.path.type
+    if (!type) {
         throw new Error('type是必传参数')
     }
-    if (!LoginType.isThisType(vals.body.type)) {
+    type = parseInt(type)
+    //parsed
+    //this.parsed.path.type = type
+    if (!ArtType.isThisType(type)) {
         throw new Error('type参数不合法')
     }
   }
