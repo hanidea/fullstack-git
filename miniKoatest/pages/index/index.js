@@ -65,6 +65,32 @@ Page({
     })
   },
 
+  onGetHotBookList() {
+    wx.request({
+      url: 'http://localhost:3000/v1/book/hot_list',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+
+  onGetBookDetail() {
+    wx.request({
+      url: 'http://localhost:3000/v1/book/1120/detail',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+
   onGetDetail() {
     wx.request({
       url: 'http://localhost:3000/v1/classic/100/1',
