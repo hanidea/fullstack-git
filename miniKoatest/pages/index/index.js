@@ -39,6 +39,23 @@ Page({
     })
   },
 
+  onAddShortComment() {
+    wx.request({
+      url: 'http://localhost:3000/v1/book/add/short_comment',
+      method: 'POST',
+      data:{
+        content:'真好看真好看真好看真好看真好看真好看真好看',
+        bookId:1120
+      },
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+  
   onGetClassicFavor() {
     wx.request({
       url: 'http://localhost:3000/v1/classic/100/1/favor',
@@ -82,6 +99,49 @@ Page({
     wx.request({
       url: 'http://localhost:3000/v1/book/1120/detail',
       method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+
+  onGetBookFavor() {
+    wx.request({
+      url: 'http://localhost:3000/v1/book/1120/favor',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+
+  onBookFavorCount() {
+    wx.request({
+      url: 'http://localhost:3000/v1/book/favor/count',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
+
+  onBookSearch() {
+    wx.request({
+      url: 'http://localhost:3000/v1/book/search',
+      method: 'GET',
+      data:{
+        q:'韩寒',
+        count:5
+      },
       success: res => {
         console.log(res.data)
       },
