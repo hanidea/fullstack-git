@@ -5,8 +5,8 @@ const router = new Router({
 
 const {
     success
-  } = require('@lib/helper')
-  
+} = require('@lib/helper')
+
 const {
     HotBook
 } = require('@model/hot-book')
@@ -42,10 +42,10 @@ router.get('/hot_list', async (ctx, next) => {
 
 router.get('/:id/detail', async ctx => {
     const v = await new PostitiveIntegerValidator().validate(ctx)
-    //const book = await Book.detail(v.get('path.id'))
-    //ctx.body = book
-    const book = new Book(v.get('path.id'))
-    ctx.body = await book.detail()
+    const book = await Book.detail(v.get('path.id'))
+    ctx.body = book
+    // const book = new Book(v.get('path.id'))
+    // ctx.body = await book.detail()
 })
 
 router.get('/search', async ctx => {
@@ -78,6 +78,32 @@ router.post('/add/short_comment', new Auth().m, async ctx => {
 
     await Comment.addComment(v.get('body.bookId'), v.get('body.content'))
     success()
+})
+
+router.get('/:bookId/short_comment', new Auth().m, async ctx => {
+    const v = await new PostitiveIntegerValidator().validate(ctx, {
+        id: 'bookId'
+    })
+    const bookId = v.get('path.bookId')
+    const comments = await Comment.getComments(bookId)
+    ctx.body = {
+        comments: comments,
+        bookId
+    }
+})
+
+router.get('/hot_keyword', async ctx => {
+    ctx.body = {
+        'hot': ['Python',
+            '哈利·波特',
+            '村上春树',
+            '东野圭吾',
+            '白夜行',
+            '韩寒',
+            '金庸',
+            '王小波'
+        ]
+    }
 })
 
 //微服务 node 中间层

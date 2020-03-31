@@ -55,6 +55,19 @@ Page({
       }
     })
   },
+
+  onGetShortComment() {
+    wx.request({
+      url: 'http://localhost:3000/v1/book/1120/short_comment',
+      method: 'GET',
+      success: res => {
+        console.log(res.data)
+      },
+      header: {
+        Authorization: this._encode()
+      }
+    })
+  },
   
   onGetClassicFavor() {
     wx.request({

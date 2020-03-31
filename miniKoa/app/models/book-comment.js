@@ -26,6 +26,21 @@ class Comment extends Model {
             })
         }
     }
+
+    static async getComments(bookId) {
+        const comments = await Comment.findAll({
+            where: {
+                bookId
+            }
+        })
+        return comments
+    }
+    // toJSON() {
+    //     return {
+    //         content: this.getDataValue('content'),
+    //         nums: this.getDataValue('nums')
+    //     }
+    // }
 }
 
 Comment.init({

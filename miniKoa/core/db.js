@@ -1,4 +1,9 @@
 const {
+  unset,
+  clone
+} = require('lodash')
+
+const {
   Sequelize,
   Model
 } = require('sequelize')
@@ -33,6 +38,23 @@ const sequelize = new Sequelize(dbName, user, password, {
 sequelize.sync({
     force: false // 自动删除原来表，重新创建新的表
 })
+
+Model.prototype.toJSON = function () {
+  let data = clone(this.dataValues)
+
+  unset(data, 'updatedAt')
+  unset(data, 'createdAt')
+  unset(data, 'deletedAt')
+
+  // for (key in data) {
+  //   if (key === 'image') {
+  //     if (!data[key].startsWith('http'))
+  //       data[key] = global.config.host + data[key]
+  //   }
+  // }
+
+  return data
+}
 
 module.exports = {
   sequelize
