@@ -43,10 +43,10 @@ router.get('/hot_list', async (ctx, next) => {
 
 router.get('/:id/detail', async ctx => {
     const v = await new PostitiveIntegerValidator().validate(ctx)
-    const book = await Book.detail(v.get('path.id'))
-    ctx.body = book
-    // const book = new Book(v.get('path.id'))
-    // ctx.body = await book.detail()
+    // const book = await Book.detail(v.get('path.id'))
+    // ctx.body = await book
+    const book = new Book()
+    ctx.body = await book.detail(v.get('path.id'))
 })
 
 router.get('/search', async ctx => {
@@ -69,7 +69,7 @@ router.get('/:bookId/favor', new Auth().m, async ctx => {
     })
     const favor = await Favor.getBookFavor(
         ctx.auth.uid, v.get('path.bookId'))
-    ctx.body = favor
+        ctx.body = favor
 })
 
 router.post('/add/short_comment', new Auth().m, async ctx => {

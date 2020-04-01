@@ -86,7 +86,7 @@ class Favor extends Model {
         }
         return await Art.getList(arts)
     }
-    static async getBookFavor(bookId, uid) {
+    static async getBookFavor(uid,bookId) {
         const favorNums = await Favor.count({
             where: {
                 artId: bookId,
@@ -95,8 +95,8 @@ class Favor extends Model {
         })
         const myFavor = await Favor.findOne({
             where: {
-                uid,
                 artId: bookId,
+                uid,
                 type: 400
             }
         })

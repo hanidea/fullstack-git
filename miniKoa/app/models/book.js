@@ -15,12 +15,8 @@ const {
   } = require('@model/favor')
 
 class Book extends Model {
-    constructor() {
-        super()
-        //this.id = id
-    }
 
-    static async detail(id) {
+    async detail(id) {
         const url = util.format(global.config.yushu.detailUrl, id)
         const detail = await axios.get(url)
         return detail.data
