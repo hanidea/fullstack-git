@@ -35,9 +35,10 @@ const {
 
 router.get('/hot_list', async (ctx, next) => {
     const books = await HotBook.getAll()
-    ctx.body = {
-        books: books
-    }
+    // ctx.body = {
+    //     books: books
+    // }
+    ctx.body = books
 })
 
 router.get('/:id/detail', async ctx => {

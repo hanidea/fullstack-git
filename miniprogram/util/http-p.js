@@ -21,6 +21,7 @@ class HTTP {
       header: {
         'content-type': 'application/json',
         'appkey': config.appkey
+        //Authorization:this._encode()
       },
       success: (res) => {
         const code = res.statusCode.toString()
