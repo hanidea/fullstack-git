@@ -1,6 +1,7 @@
 const {
   unset,
-  clone
+  clone, 
+  isArray
 } = require('lodash')
 
 const {
@@ -46,13 +47,18 @@ Model.prototype.toJSON = function () {
   unset(data, 'createdAt')
   unset(data, 'deletedAt')
 
-  // for (key in data) {
-  //   if (key === 'image') {
-  //     if (!data[key].startsWith('http'))
-  //       data[key] = global.config.host + data[key]
-  //   }
-  // }
-
+  for (const key in data) {
+    if (key === 'image') {
+      if (!data[key].startsWith('http')) {
+        data[key] = global.config.host + data[key]
+      }
+    }
+  }
+  if (isArray(this.exclude)) {
+    this.exclude.forEach(value => {
+      unset(data, value)
+    })
+  }
   return data
 }
 
