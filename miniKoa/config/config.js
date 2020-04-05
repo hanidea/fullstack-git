@@ -1,11 +1,11 @@
 module.exports = {
   environment: 'dev',
   database: {
-    dbName: 'island',
+    dbName: 'mini',
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'Junjie2020!'
+    password: 'Hanidea@123'
   },
   security: {
     secretKey: "abcdefg",
@@ -20,5 +20,5 @@ module.exports = {
     detailUrl: 'http://t.yushu.im/v2/book/id/%s',
     keywordUrl: 'http://t.yushu.im/v2/book/search?q=%s&count=%s&start=%s&summary=%s'
   },
-  host:'http://localhost:3000/'
+  host:'http://127.0.0.1:3000/'
 }
