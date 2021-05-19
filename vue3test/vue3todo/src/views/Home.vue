@@ -7,12 +7,13 @@
       <NavFooter></NavFooter>
       <div>{{list}}</div> -->
       <button @click="goto">跳转路由</button>
+      <div>{{name}}------{{num}}------{{obj}}</div>
 </template>
 <script>
 import NavHeader from '@/components/navHeader/NavHeader'
 import NavMain from '@/components/navMain/NavMain'
 import NavFooter from '@/components/navFooter/NavFooter'
-import {defineComponent,ref,reactive,toRefs,computed} from 'vue'
+import {defineComponent,ref,reactive,toRefs,computed,onMounted} from 'vue'
 import {useStore} from 'vuex'
 import {useRouter,useRoute} from 'vue-router'
 export default defineComponent({
@@ -34,7 +35,17 @@ export default defineComponent({
     // route是当前路由对象
     let route = useRoute()
     // 传递过来都是字符串类型
-    console.log(route.params)
+    //console.log(route.params)
+    let num = ref(null)
+    let name = ref('')
+    let obj = ref({
+
+    })
+    onMounted(()=>{
+      num.value = route.params.num * 1
+      name.value = route.params.name
+      obj.value = JSON.parse(route.params.obj)
+    })
     let goto = () =>{
       //跳转路由
       // push函数里面可以传入跳转的路径
@@ -67,7 +78,10 @@ export default defineComponent({
       //data
       //...toRefs(data)
       //list
-      goto
+      //goto
+      num,
+      name,
+      obj
     }
   }
 
