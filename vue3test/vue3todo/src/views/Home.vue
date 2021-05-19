@@ -1,7 +1,10 @@
 <template>
-      <div>{{name}}</div>
+      <!-- <div>{{name}}</div>
       <div>{{age}}</div>
-      <div>{{obj}}</div>
+      <div>{{obj}}</div> -->
+      <NavHeader></NavHeader>
+      <NavMain></NavMain>
+      <NavFooter></NavFooter>
 </template>
 <script>
 import NavHeader from '@/components/navHeader/NavHeader'
