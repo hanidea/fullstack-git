@@ -2,10 +2,11 @@
       <!-- <div>{{name}}</div>
       <div>{{age}}</div>
       <div>{{obj}}</div> -->
-      <NavHeader></NavHeader>
+      <!-- <NavHeader></NavHeader>
       <NavMain></NavMain>
       <NavFooter></NavFooter>
-      <div>{{list}}</div>
+      <div>{{list}}</div> -->
+      <button @click="goto">跳转路由</button>
 </template>
 <script>
 import NavHeader from '@/components/navHeader/NavHeader'
@@ -13,6 +14,7 @@ import NavMain from '@/components/navMain/NavMain'
 import NavFooter from '@/components/navFooter/NavFooter'
 import {defineComponent,ref,reactive,toRefs,computed} from 'vue'
 import {useStore} from 'vuex'
+import {useRouter} from 'vue-router'
 export default defineComponent({
   name:'Home',
   components:{
@@ -22,11 +24,23 @@ export default defineComponent({
 
   },
   setup(props,ctx){
-    let store = useStore()
-    //console.log(store)
-    let list = computed(()=>{
-      return store.state.list
-    })
+    // let store = useStore()
+    // //console.log(store)
+    // let list = computed(()=>{
+    //   return store.state.list
+    // })
+    let router = useRouter()
+    console.log(router)
+    let goto = () =>{
+      //跳转路由
+      // push函数里面可以传入跳转的路径
+      // back: 回退到上一页
+      // forward: 去到下一页
+      // go(整数) 整数代表前进 负数代表后退
+      router.push({
+        path:'/about'
+      })
+    }
     // let num = ref(10)
     // let name = ref('jack')
     // let arr = ref(['a','b','c','d'])
@@ -48,7 +62,8 @@ export default defineComponent({
       // obj
       //data
       //...toRefs(data)
-      list
+      //list
+      goto
     }
   }
 
