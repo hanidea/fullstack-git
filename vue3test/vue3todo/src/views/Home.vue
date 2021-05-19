@@ -14,7 +14,7 @@ import NavMain from '@/components/navMain/NavMain'
 import NavFooter from '@/components/navFooter/NavFooter'
 import {defineComponent,ref,reactive,toRefs,computed} from 'vue'
 import {useStore} from 'vuex'
-import {useRouter} from 'vue-router'
+import {useRouter,useRoute} from 'vue-router'
 export default defineComponent({
   name:'Home',
   components:{
@@ -29,8 +29,12 @@ export default defineComponent({
     // let list = computed(()=>{
     //   return store.state.list
     // })
+    // router是全局
     let router = useRouter()
-    console.log(router)
+    // route是当前路由对象
+    let route = useRoute()
+    // 传递过来都是字符串类型
+    console.log(route.params)
     let goto = () =>{
       //跳转路由
       // push函数里面可以传入跳转的路径
