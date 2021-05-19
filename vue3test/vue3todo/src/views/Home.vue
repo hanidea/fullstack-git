@@ -1,21 +1,16 @@
 <template>
-      <!-- <div>{{name}}</div>
-      <div>{{age}}</div>
-      <div>{{obj}}</div> -->
-      <!-- <NavHeader></NavHeader>
-      <NavMain></NavMain>
-      <NavFooter></NavFooter>
-      <div>{{list}}</div> -->
-      <button @click="goto">跳转路由</button>
-      <div>{{name}}------{{num}}------{{obj}}</div>
+      <div>
+      <NavHeader @add='add'></NavHeader>
+      <NavMain :list='list' @del='del'></NavMain>
+      <NavFooter :list='list' @clear='clear'></NavFooter>
+      </div>
 </template>
 <script>
 import NavHeader from '@/components/navHeader/NavHeader'
 import NavMain from '@/components/navMain/NavMain'
 import NavFooter from '@/components/navFooter/NavFooter'
-import {defineComponent,ref,reactive,toRefs,computed,onMounted} from 'vue'
+import {defineComponent,ref,computed} from 'vue'
 import {useStore} from 'vuex'
-import {useRouter,useRoute} from 'vue-router'
 export default defineComponent({
   name:'Home',
   components:{
@@ -24,64 +19,50 @@ export default defineComponent({
     NavFooter
 
   },
-  setup(props,ctx){
-    // let store = useStore()
-    // //console.log(store)
-    // let list = computed(()=>{
-    //   return store.state.list
-    // })
-    // router是全局
-    let router = useRouter()
-    // route是当前路由对象
-    let route = useRoute()
-    // 传递过来都是字符串类型
-    //console.log(route.params)
-    let num = ref(null)
-    let name = ref('')
-    let obj = ref({
-
+  setup(){
+    let store = useStore()
+    let list = computed(()=>{
+      return store.state.list
     })
-    onMounted(()=>{
-      num.value = route.params.num * 1
-      name.value = route.params.name
-      obj.value = JSON.parse(route.params.obj)
-    })
-    let goto = () =>{
-      //跳转路由
-      // push函数里面可以传入跳转的路径
-      // back: 回退到上一页
-      // forward: 去到下一页
-      // go(整数) 整数代表前进 负数代表后退
-      router.push({
-        path:'/about'
+    let value = ref('')
+    //添加任务
+    let add = (val) =>{
+      value.value = val
+      //去重
+      let flag = true
+      list.value.map(item=>{
+        if(item.title === value.value)
+        {
+          //有重复的任务
+          flag = false
+          alert('任务已存在')
+        }
       })
+      if(flag){
+        //调用mutation
+        store.commit('addTodo',{
+          title:value.value,
+          complete:false
+        })
+      }
+      console.log(val)
     }
-    // let num = ref(10)
-    // let name = ref('jack')
-    // let arr = ref(['a','b','c','d'])
-    // let obj = ref({
-    //   age:20
-    // })
-    // let data = reactive({
-    //   name:'jack',
-    //   age:20,
-    //   obj:{
-    //     price:20
-    //   },
-    //   arr:['a','b','c','d']
-    // })
+    //删除任务
+    let del = (val) =>{
+      //调用删除的mutation
+      store.commit('delTodo',val)
+      console.log(val)
+    }
+    //清除已完成
+    let clear = (val) =>{
+      store.commit('clear',val)
+    }
     return{
-      // num,
-      // name,
-      // arr,
-      // obj
-      //data
-      //...toRefs(data)
-      //list
-      //goto
-      num,
-      name,
-      obj
+      add,
+      value,
+      list,
+      del,
+      clear
     }
   }
 

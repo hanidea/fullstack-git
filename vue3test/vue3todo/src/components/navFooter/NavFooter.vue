@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>已完成{{isComplete}} / 全部{{all}}</div>
+    <div>已完成{{isComplete}} / 全部{{list.length}}</div>
     <div v-if="isComplete > 0" class="btn">
       <button @click="clear">清除已完成</button>
     </div>
@@ -8,19 +8,36 @@
 </template>
 <script>
 
-import { defineComponent,ref } from "vue";
+import { defineComponent,ref,computed} from "vue";
 export default defineComponent({
   name:'navFooter',
-  setup(){
-    let isComplete = ref(1)
-    let all = ref(3)
+  props:{
+    list:{
+      type:Array,
+      required:true
+    }
+  },
+  setup(props,ctx){
+    let isComplete = computed(()=>{
+      //过滤已完成的
+      let arr = props.list.filter(item =>{
+        return item.complete
+      })
+      return arr.length
+    })
+    //let all = ref(3)
     // 清除已完成
     let clear = () => {
-      console.log('clear')
+      //过滤未完成的
+      let arr = props.list.filter(item =>{
+        return item.complete === false
+      })
+      ctx.emit('clear',arr)
+      //console.log('clear')
     }
     return {
       isComplete,
-      all,
+      //all,
       clear
     }
   },
