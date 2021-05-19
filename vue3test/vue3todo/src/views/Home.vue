@@ -9,7 +9,7 @@
 import NavHeader from '@/components/navHeader/NavHeader'
 import NavMain from '@/components/navMain/NavMain'
 import NavFooter from '@/components/navFooter/NavFooter'
-import {defineComponent} from 'vue'
+import {defineComponent,ref} from 'vue'
 
 export default defineComponent({
   name:'Home',
@@ -19,8 +19,12 @@ export default defineComponent({
     NavFooter
 
   },
-  setup(){
+  setup(props,ctx){
+    let num = ref(10)
+    
+    return{
 
+    }
   }
 
 })
