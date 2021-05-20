@@ -17,7 +17,6 @@ export default defineComponent({
     NavHeader,
     NavMain,
     NavFooter
-
   },
   setup(){
     let store = useStore()
@@ -69,5 +68,8 @@ export default defineComponent({
 })
 </script>
 <style scoped lang="scss">
-
+*{
+margin:0;
+padding:0;
+}
 </style>
