@@ -8,7 +8,7 @@
       <div>{{list}}</div> -->
       <button @click="goto">跳转路由</button>
       <div>{{name}}------{{num}}------{{obj}}</div>
-      <div>版本4</div>
+      <div>版本5</div>
 </template>
 <script>
 import NavHeader from '@/components/navHeader/NavHeader'
