@@ -9,17 +9,33 @@
 </head>
 <body>
     <div id="app">
-       <div v-html="message"></div>
+       <div @click="onClick" v-html="message?'hello':'123'"></div>
+       <div v-if="number===1">{{message}}</div>
+       <div v-else-if="number===2">{{message+123}}</div>
+       <a :[attr]="url" v-else>点击</a>
     </div>
     
 </body>
 <script>
     const {createApp} = Vue
     const message = "<div style='color:blue;'>hello,James<br>test</div>"
+    const url = 'http://bighanhan.com'
+    const attr = 'href'
+    const flag = false
+    const number = 2
     const app = {
         setup(){
+            function onClick(event){
+                console.log(event)
+                alert('test')
+            }
             return {
-                message
+                message,
+                url,
+                attr,
+                onClick,
+                flag,
+                number
             }
 
         }
