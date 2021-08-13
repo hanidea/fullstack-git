@@ -17,6 +17,9 @@
        <ul>
         <li v-for="(item,index) in titles">{{item}}+{{index}}</li>
        </ul>
+       <ul>
+        <li v-for="(value,key,index) of book">{{key}}:{{value}}:{{index}}</li>
+       </ul>
     </div>
     
     
@@ -42,7 +45,12 @@
                 onClick,
                 flag,
                 number,
-                titles
+                titles,
+                book:{
+                    title:'六便士',
+                    author:'毛姆',
+                    pubdate:'2000'
+                }
             }
 
         }
