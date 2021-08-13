@@ -9,13 +9,13 @@
 </head>
 <body>
     <div id="app">
-        {{message}}
+       <div v-html="message"></div>
     </div>
     
 </body>
 <script>
     const {createApp} = Vue
-    const message = "hello,James"
+    const message = "<div style='color:blue;'>hello,James<br>test</div>"
     const app = {
         setup(){
             return {
