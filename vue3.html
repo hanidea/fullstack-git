@@ -9,11 +9,16 @@
 </head>
 <body>
     <div id="app">
-       <div @click="onClick" v-html="message?'hello':'123'"></div>
+       <!-- <div @click="onClick" v-html="message?'hello':'123'"></div>
        <div v-if="number===1">{{message}}</div>
        <div v-else-if="number===2">{{message+123}}</div>
-       <a :[attr]="url" v-else>点击</a>
+       <a :[attr]="url" v-else>点击</a> -->
+
+       <ul>
+        <li v-for="(item,index) in titles">{{item}}+{{index}}</li>
+       </ul>
     </div>
+    
     
 </body>
 <script>
@@ -23,6 +28,7 @@
     const attr = 'href'
     const flag = false
     const number = 2
+    const titles = ['test1','test2','test3']
     const app = {
         setup(){
             function onClick(event){
@@ -35,7 +41,8 @@
                 attr,
                 onClick,
                 flag,
-                number
+                number,
+                titles
             }
 
         }
