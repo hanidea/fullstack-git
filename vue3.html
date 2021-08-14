@@ -28,19 +28,19 @@
     
 </body>
 <script>
-    const {createApp} = Vue
+    const {createApp,ref} = Vue
     const message = "<div style='color:blue;'>hello,James<br>test</div>"
     const url = 'http://bighanhan.com'
     const attr = 'href'
     const flag = false
     const number = 2
     const titles = ['test1','test2','test3']
-    const age = 18
+    const age = ref(18)
     const app = {
         setup(){
             function onClick(event){
                 //console.log(event)
-                alert(age)
+                alert(age.value)
             }
             return {
                 message,
