@@ -20,6 +20,9 @@
        <ul>
         <li v-for="(value,key,index) of book">{{key}}:{{value}}:{{index}}</li>
        </ul>
+
+       <input v-model ="age" type="text"/>
+       <button @click="onClick">提交</button>
     </div>
     
     
@@ -32,11 +35,12 @@
     const flag = false
     const number = 2
     const titles = ['test1','test2','test3']
+    const age = 18
     const app = {
         setup(){
             function onClick(event){
-                console.log(event)
-                alert('test')
+                //console.log(event)
+                alert(age)
             }
             return {
                 message,
@@ -46,6 +50,7 @@
                 flag,
                 number,
                 titles,
+                age,
                 book:{
                     title:'六便士',
                     author:'毛姆',
