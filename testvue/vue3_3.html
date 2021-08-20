@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="firstName" />
+        <input type="text" v-model="lastName" />
+        <div>{{getFullName()}}</div>
+        <test-c></test-c>
+    </div>
+
+
+</body>
+<script>
+    const { createApp, ref, reactive, watch, computed } = Vue
+    const firstName = ref('')
+    const lastName = ref('')
+    let fullName = ref('')
+
+
+    const app = {
+        setup() {
+            //const fullName = computed(()=>firstName.value+lastName.value)
+            function getFullName() {
+                return firstName.value + lastName.value
+            }
+            return {
+
+                firstName,
+                lastName,
+                getFullName
+            }
+        }
+
+        //watch 钩子
+    }
+    const vm = createApp(app)
+    vm.component('test-c',{
+        template:'<div>hello</div>'
+    })
+    vm.mount('#app')
+
+</script>
+
+</html>

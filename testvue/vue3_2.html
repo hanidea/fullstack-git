@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+       <input type="text" v-model="name.firstName"/>
+       <input type="text" v-model="name.lastName"/>
+       <div>{{name.fullName}}</div>
+    </div>
+
+
+</body>
+<script>
+    const { createApp, ref, reactive, watch } = Vue
+    //const firstName= ref('')
+    //const lastName= ref('')
+    //let fullName = ref('')
+    const name = reactive({
+        firstName:'',
+        lastName:'',
+        fullName:''
+    })
+
+
+    const app = {
+        setup() {
+            watch(()=>name.firstName,(newVal,oldVal)=>{
+                name.fullName = name.firstName + name.lastName
+                console.log(newVal,oldVal)
+            })
+            watch(()=>name.lastName,(newVal,oldVal)=>{
+                name.fullName = name.firstName + name.lastName
+                console.log(newVal,oldVal)
+            })
+            // watch(lastName,(newVal,oldVal)=>{
+            //     fullName.value = firstName.value + lastName.value
+            //     console.log(newVal,oldVal)
+            // })
+            return {
+                name,
+                //firstName,
+                //lastName,
+                //fullName
+            }
+        }
+
+        //watch 钩子
+    }
+    createApp(app).mount('#app')
+    
+</script>
+
+</html>

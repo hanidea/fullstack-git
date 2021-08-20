@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div @click="onClick" v-html="message?'hello':'123'"></div>
+       <div v-if="number===1">{{message}}</div>
+       <div v-else-if="number===2">{{message+123}}</div>
+       <a :[attr]="url" v-else>点击</a> -->
+
+        <ul>
+            <li v-for="(item,index) in titles">{{item}}+{{index}}</li>
+        </ul>
+        <ul>
+            <li v-for="(value,key,index) of book">{{key}}:{{value}}:{{index}}</li>
+        </ul>
+
+        <input v-model="age" type="text" />
+        <div>{{number}}</div>
+        <button @click="onIncrement">+1</button>
+        <button @click="onClick">提交</button>
+    </div>
+
+
+</body>
+<script>
+    const { createApp, ref, reactive, watch } = Vue
+    const message = "<div style='color:blue;'>hello,James<br>test</div>"
+    const url = 'http://bighanhan.com'
+    const attr = 'href'
+    const flag = false
+    let number = ref(2)
+    const titles = ['test1', 'test2', 'test3']
+    const age = ref(18)
+    const profile = reactive({
+        age: 18
+    })
+    const app = {
+        setup() {
+            function onClick(event) {
+                //console.log(event)
+                alert(age.value)
+            }
+            function onIncrement() {
+                number.value++
+                console.log(number.value)
+
+            }
+            return {
+                message,
+                url,
+                attr,
+                onClick,
+                flag,
+                number,
+                titles,
+                age,
+                onIncrement,
+                book: {
+                    title: '六便士',
+                    author: '毛姆',
+                    pubdate: '2000'
+                }
+            }
+        }
+
+        //watch 钩子
+    }
+    createApp(app).mount('#app')
+    // const vm = new Vue({
+    //     el:'#app',
+    //     data:{
+    //         message
+    //     },
+    //     //template
+
+    // });
+</script>
+
+</html>
