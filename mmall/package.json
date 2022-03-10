@@ -31,7 +31,7 @@
     "font-awesome": "^4.7.0",
     "hogan": "^1.0.2",
     "hogan.js": "^3.0.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "npm": "^6.8.0",
     "style-loader": "^0.23.1"
   }
