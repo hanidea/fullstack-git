@@ -1584,8 +1584,8 @@ decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   resolved "https://registry.npm.taobao.org/decamelize/download/decamelize-1.2.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdecamelize%2Fdownload%2Fdecamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npm.taobao.org/decode-uri-component/download/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
 
 deep-equal@^1.0.1:
   version "1.0.1"
@@ -2956,9 +2956,13 @@ jquery@2.x:
   version "2.2.4"
   resolved "https://registry.npm.taobao.org/jquery/download/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
 
-jquery@^3.0.0, jquery@^3.3.1:
+jquery@^3.0.0:
   version "3.4.1"
   resolved "https://registry.npm.taobao.org/jquery/download/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+
+jquery@^3.4.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.1.tgz#fab0408f8b45fc19f956205773b62b292c147a16"
 
 jquery@~3.1.0:
   version "3.1.1"
@@ -4805,12 +4809,12 @@ signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.npm.taobao.org/signal-exit/download/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-simditor@^2.3.26:
-  version "2.3.26"
-  resolved "https://registry.npm.taobao.org/simditor/download/simditor-2.3.26.tgz#322706ae3e08aa4e2c1a581ca6983a177bcf8eee"
+simditor@^2.3.6:
+  version "2.3.28"
+  resolved "https://registry.yarnpkg.com/simditor/-/simditor-2.3.28.tgz#294e86eeae3e0e57255910aac9dd9070cc495628"
   dependencies:
     dompurify "^1.0.8"
-    jquery "^3.3.1"
+    jquery "^3.4.1"
     simple-hotkeys "^1.0.3"
     simple-module "^3.0.3"
     simple-uploader "^3.0.0"
