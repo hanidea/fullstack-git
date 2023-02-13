@@ -29,4 +29,21 @@ describe('user test', () => {
       .expect('100');
   });
 
+  it('user add post', async () => {
+    await app.httpRequest()
+      .post('/user/add')
+      .send({
+        name: 'john',
+        age: 18,
+      })
+      .expect(200)
+      .expect({
+        status: 200,
+        data: {
+          name: 'john',
+          age: 18,
+        },
+      });
+  });
+
 });
